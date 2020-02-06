@@ -1,0 +1,7 @@
+service:
+  name: testservicename
+  port: 8000
+  timer: 60
+logfile:
+  location: /home/ubuntu/logs
+  name: testservice.log
