@@ -63,7 +63,7 @@ Now using the imported package you can call any required function you want and e
 
     SendEmail function to send an email to given receiver address with given message, subject and from given sender, function will return true if there are no errors. You can even send HTML message in HtmlBody.
 
-    > :red_circle: You can not send both TextBody and HtmlBody together, you will have to choose one between them and keep other empty i.e "". In case you send both, only the HtmlBody will be shown in the email :red_circle:
+    > :red_circle: For emails which doesn't support HTML, TextBody will be displayed else HtmlBody :red_circle:
 
 1. RemoveEmail Function
 

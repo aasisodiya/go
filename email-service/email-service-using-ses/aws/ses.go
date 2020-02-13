@@ -162,57 +162,32 @@ func SendEmail(Recipient string, Sender string, Subject string, TextBody string,
 
 	// Create an SES session.
 	svc := ses.New(sess)
-	var input *ses.SendEmailInput
-
-	// Assemble the email.
-	if(HtmlBody == "") {
-		input = &ses.SendEmailInput{
-			Destination: &ses.Destination{
-				CcAddresses: []*string{},
-				ToAddresses: []*string{
-					aws.String(Recipient),
-				},
+	input := &ses.SendEmailInput{
+		Destination: &ses.Destination{
+			CcAddresses: []*string{},
+			ToAddresses: []*string{
+				aws.String(Recipient),
 			},
-			Message: &ses.Message{
-				Body: &ses.Body{
-					Text: &ses.Content{
-						Charset: aws.String(CharSet),
-						Data:    aws.String(TextBody),
-					},
-				},
-				Subject: &ses.Content{
+		},
+		Message: &ses.Message{
+			Body: &ses.Body{
+				Text: &ses.Content{
 					Charset: aws.String(CharSet),
-					Data:    aws.String(Subject),
+					Data:    aws.String(TextBody),
 				},
-			},
-			Source: aws.String(Sender),
-			// Uncomment to use a configuration set
-			//ConfigurationSetName: aws.String(ConfigurationSet),
-		}
-	} else {
-		input = &ses.SendEmailInput{
-			Destination: &ses.Destination{
-				CcAddresses: []*string{},
-				ToAddresses: []*string{
-					aws.String(Recipient),
-				},
-			},
-			Message: &ses.Message{
-				Body: &ses.Body{
-					Html: &ses.Content{
-						Charset: aws.String(CharSet),
-						Data:    aws.String(HtmlBody),
-					},
-				},
-				Subject: &ses.Content{
+				Html: &ses.Content{
 					Charset: aws.String(CharSet),
-					Data:    aws.String(Subject),
+					Data:    aws.String(HtmlBody),
 				},
 			},
-			Source: aws.String(Sender),
-			// Uncomment to use a configuration set
-			//ConfigurationSetName: aws.String(ConfigurationSet),
-		}
+			Subject: &ses.Content{
+				Charset: aws.String(CharSet),
+				Data:    aws.String(Subject),
+			},
+		},
+		Source: aws.String(Sender),
+		// Uncomment to use a configuration set
+		//ConfigurationSetName: aws.String(ConfigurationSet),
 	}
 
 	// Attempt to send the email.

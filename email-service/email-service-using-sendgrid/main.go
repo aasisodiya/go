@@ -35,10 +35,8 @@ func main() {
 	// Step 4 : Your are ready to send an email, just modify the data below as per your requirements
 	subject := "Sample Subject"
 	plainTextMessage := "This is Test Message!"
-	htmlTextMessage := "<h1>This is Test Message but in HTML!</h1>"
+	htmlTextMessage := "<h1>This is Test Message!</h1>"
 
-	// Sending one sample Plain Text Email
+	// Sending one sample Email
 	services.SendEmail(r, s, subject, plainTextMessage)
-	// Sending one sample HTML body Email
-	services.SendEmail(r, s, subject, htmlTextMessage)
 }
