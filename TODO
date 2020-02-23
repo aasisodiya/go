@@ -1,0 +1,15 @@
+Extension: https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-todo-plus
+---
+'Cmd/Ctrl+Enter' // Triggers `Todo: Toggle Box`
+'Alt+Enter' // Triggers `Todo: Toggle Box`
+'Alt+D' // Triggers `Todo: Toggle Done`
+'Alt+C' // Triggers `Todo: Toggle Cancelled`
+'Alt+S' // Triggers `Todo: Toggle Start`
+'Cmd/Ctrl+Shift+A' // Triggers  `Todo: Archive`
+---
+Todo:
+  ✔ Daemon Integration in Go @done(20-02-07 22:26)
+  ✔ Email Services using Go @done(20-02-14 23:37)
+    ✔ SES @done(20-02-14 23:27)
+    ✔ SendGrid @done(20-02-14 23:27)
+  ✔ AWS Lambda using Go @done(20-02-21 23:17)
