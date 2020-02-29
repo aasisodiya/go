@@ -28,10 +28,6 @@ func ListObjects(region string, bucketName string, maxkeys int) (*s3.ListObjects
 			default:
 				fmt.Println(aerr.Error())
 			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
 		}
 		return nil, err
 	}
@@ -57,10 +53,6 @@ func GetObject(region string, bucketName string, objectkey string) (*s3.GetObjec
 			default:
 				fmt.Println(aerr.Error())
 			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
 		}
 		return nil, err
 	}
@@ -85,10 +77,6 @@ func DeleteObject(region string, bucketName string, objectkey string) (*s3.Delet
 			default:
 				fmt.Println(aerr.Error())
 			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
 		}
 		return nil, err
 	}
@@ -123,10 +111,6 @@ func DeleteObjects(region string, bucketName string, objectkeys []string) (*s3.D
 			default:
 				fmt.Println(aerr.Error())
 			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
 		}
 		return nil, err
 	}
@@ -157,10 +141,6 @@ func CreateBucket(region string, bucketName string) (*s3.CreateBucketOutput, err
 			default:
 				fmt.Println(aerr.Error())
 			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
 		}
 		return nil, err
 	}
@@ -184,10 +164,6 @@ func DeleteBucket(region string, bucketName string) (*s3.DeleteBucketOutput, err
 			default:
 				fmt.Println(aerr.Error())
 			}
-		} else {
-			// Print the error, cast err to awserr.Error to get the Code and
-			// Message from an error.
-			fmt.Println(err.Error())
 		}
 		return nil, err
 	}
