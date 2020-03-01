@@ -4,7 +4,7 @@ Refer below request structure for creating your lambda code with api gateway
 
 ## APIGatewayProxyRequest Struct
 
-```json
+```golang
 type APIGatewayProxyRequest struct {
     Resource                        string                        `json:"resource"` // The resource path defined in API Gateway
     Path                            string                        `json:"path"`     // The url path for the caller

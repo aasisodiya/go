@@ -1,3 +1,3 @@
-# Sample code for Lambda demonstarting Custom Request and Response
+# Sample code for Lambda demonstrating Custom Request and Response
 
 Please read main document for more details

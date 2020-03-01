@@ -1,4 +1,4 @@
-# Delete Object in S3 Bucket
+# Delete Objects in S3 Bucket
 
 ## Question
 

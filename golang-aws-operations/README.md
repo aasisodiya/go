@@ -4,7 +4,7 @@ Refer to Documentation of golang-aws-lambda folder for lambda deployment with ap
 
 ## APIGatewayProxyRequest Struct
 
-```json
+```golang
 type APIGatewayProxyRequest struct {
     Resource                        string                        `json:"resource"` // The resource path defined in API Gateway
     Path                            string                        `json:"path"`     // The url path for the caller
@@ -20,3 +20,7 @@ type APIGatewayProxyRequest struct {
     IsBase64Encoded                 bool                          `json:"isBase64Encoded,omitempty"`
 }
 ```
+
+You will have to use this object quite often if you are going to use API GW
+
+>Respective operations detail are given in their respective directory
