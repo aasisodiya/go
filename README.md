@@ -1,37 +1,15 @@
-## Welcome to GitHub Pages
+# Index
 
-You can use the [editor on GitHub](https://github.com/aasisodiya/go/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Below are the links for respective README.md files in my repository
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/aasisodiya/go/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+* [Index](https://aasisodiya.github.io/go/)
+* [Lambda using Go Lang](https://aasisodiya.github.io/go/golang-aws-lambda/)
+* [AWS Operations in Go Lang](https://aasisodiya.github.io/go/golang-aws-operations/)
+* [AWS DynamoDB Operations in Go Lang](https://aasisodiya.github.io/go/golang-aws-operations/aws-dynamodb/)
+* [AWS S3 Operations in Go Lang](https://aasisodiya.github.io/go/golang-aws-operations/aws-s3/)
+* [Delete Object in S3 Bucket](https://aasisodiya.github.io/go/golang-aws-operations/aws-s3/aws-s3-delete-object/)
+* [Delete Objects in S3 Bucket](https://aasisodiya.github.io/go/golang-aws-operations/aws-s3/aws-s3-delete-objects/)
+* [How to run any program as Daemon](https://aasisodiya.github.io/go/golang-daemon-integration-with-configuration/)
+* [AWS SES Vs SendGrid Service](https://aasisodiya.github.io/go/golang-email-service/)
+* [Using SendGrid with GoLang](https://aasisodiya.github.io/go/golang-email-service/email-service-using-sendgrid/)
+* [Using SES with Golang](https://aasisodiya.github.io/go/golang-email-service/email-service-using-ses/)

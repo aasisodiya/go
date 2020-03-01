@@ -13,3 +13,14 @@ Todo:
     ✔ SES @done(20-02-14 23:27)
     ✔ SendGrid @done(20-02-14 23:27)
   ✔ AWS Lambda using Go @done(20-02-21 23:17)
+  ☐ AWS S3 Operations in GoLang
+    ✔ Create Bucket @done(20-02-29 19:48)
+    ✔ Delete Bucket @done(20-02-29 19:48)
+    ✔ Get Object List @done(20-02-29 19:48)
+    ✔ Get Object @done(20-02-29 19:48)
+    ✔ Delete Object @done(20-02-29 19:48)
+    ✔ Delete Objects @done(20-02-29 19:48)
+  ☐ AWS DynamoDB Operations in GoLang
+    ✔ Get Item @done(20-02-29 19:48)
+    ✔ Put Item @done(20-02-29 19:48)
+    ✔ Delete Item @done(20-02-29 19:48)
