@@ -13,3 +13,4 @@ Below are the links for respective README.md files in my repository
 * [AWS SES Vs SendGrid Service](https://aasisodiya.github.io/go/golang-email-service/)
 * [Using SendGrid with GoLang](https://aasisodiya.github.io/go/golang-email-service/email-service-using-sendgrid/)
 * [Using SES with Golang](https://aasisodiya.github.io/go/golang-email-service/email-service-using-ses/)
+* [Basic MySQL Operations in GoLang](https://aasisodiya.github.io/go/golang-mysql-basic-operations/)

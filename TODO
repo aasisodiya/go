@@ -13,6 +13,7 @@ Todo:
     ✔ SES @done(20-02-14 23:27)
     ✔ SendGrid @done(20-02-14 23:27)
   ✔ AWS Lambda using Go @done(20-02-21 23:17)
+  ✔ MySQL Operations in GoLang @done(20-03-11 22:26)
   ☐ AWS S3 Operations in GoLang
     ✔ Create Bucket @done(20-02-29 19:48)
     ✔ Delete Bucket @done(20-02-29 19:48)
