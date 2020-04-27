@@ -2,6 +2,8 @@
 
 While Exploring Pluralsight I encountered some great set of Go Lang Questions in there quiz. Please do checkout [Pluralsight](https://www.pluralsight.com/) they have got some great features other than tutorials.
 
+## Quiz
+
 ---
 
 :grey_question: **How can a method be added to a built-in type, such as string?**
@@ -333,5 +335,7 @@ type Generate interface {
 :heavy_check_mark: Set the GORACE environment variable to "$HOME/go/src/myprogram"
 
 ---
+
+## Reference
 
 [Pluralsight](https://app.pluralsight.com/score/skill-assessment/go/intro?context=skills#/v2/landing)
