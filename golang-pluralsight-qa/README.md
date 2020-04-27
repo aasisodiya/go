@@ -1,6 +1,6 @@
 # Pluralsight Go Quiz
 
-While Exploring Pluralsight I encountered some great set of Go Lang Questions in there quiz. Please do checkout [Pluralsight](https://www.pluralsight.com/) they have got some great features other than tutorials.
+While Exploring Pluralsight I encountered some great set of Go Lang Questions. Please do checkout [Pluralsight](https://www.pluralsight.com/) they have got some great features other than tutorials.
 
 ## Quiz
 
