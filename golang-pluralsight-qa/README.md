@@ -4,8 +4,6 @@ While Exploring Pluralsight I encountered some great set of Go Lang Questions in
 
 ## Quiz
 
----
-
 :grey_question: **How can a method be added to a built-in type, such as string?**
 
 :heavy_check_mark: Create a type alias for the built-in type and add the method to the alias type
@@ -333,8 +331,6 @@ type Generate interface {
 :heavy_multiplication_x: Set the GOPATH environment variable to "$HOME/go/src/myprogram"
 
 :heavy_check_mark: Set the GORACE environment variable to "$HOME/go/src/myprogram"
-
----
 
 ## Reference
 
