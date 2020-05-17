@@ -43,29 +43,52 @@ set GOGCCFLAGS=-m64 -mthreads -fno-caret-diagnostics -Qunused-arguments -fmessag
 ## Error with `go get private-repo`
 
 ```bat
-$ go get -v some.private.repourl/folder
-go: finding some.private.repourl/folder latest
-go: downloading some.private.repourl/folder v0.0.0-20190921178888-98a48a9as456
-verifying some.private.repourl/folder@v0.0.0-20190921178888-98a48a9as456: some.private.repourl/folder@v0.0.0-20190921178888-98a48a9as456: reading https://sum.golang.org/lookup/some.private.repourl/folder@v0.0.0-20190921178888-98a48a9as456: 410 Gone
+$ go get -v some.private.repo.git
+go: finding some.private.repo.git latest
+go: downloading some.private.repo.git/folder v0.0.0-20190921178888-98a48a9as456
+verifying some.private.repo.git/folder@v0.0.0-20190921178888-98a48a9as456: some.private.repo.git/folder@v0.0.0-20190921178888-98a48a9as456: reading https://sum.golang.org/lookup/some.private.repo.git/folder@v0.0.0-20190921178888-98a48a9as456: 410 Gone
 ```
 
 If you get similar error `410 Gone` then it might be because of the URL being a private repo
 
 ### Solution
 
+The new `GOPRIVATE` environment variable indicates module paths that are not publicly available. It serves as the default value for the lower-level `GONOPROXY` and `GONOSUMDB` variables, which provide finer-grained control over which modules are fetched via proxy and verified using the checksum database.
+
 * in cmd.exe:
 
     ``` bat
-    set GOPRIVATE=some.private.repourl/folder
+    set GOPRIVATE=some.private.repo.git
+    set GONOSUMDB=some.private.repo.git
     ```
 
 * in Powershell:
 
     ``` posh
-    $env:GOPRIVATE = "some.private.repourl/folder"
+    $env:GOPRIVATE = "some.private.repo.git"
+    $env:GONOSUMDB = "some.private.repo.git"
     ```
 
 ### Note
 
-* `GOPRIVATE = "some.private.repourl/folder/"` will not work because of `/` at the end
-* `GOPRIVATE = "some.private.repourl/folder,some.otherprivate.repourl/folder"` you can add more than one private repo by separating them with comma (,)
+* `GOPRIVATE = "some.private.repo.git/"` will not work because of `/` at the end
+* `GOPRIVATE = "some.private.repo.git,some.otherprivate.repo.git"` you can add more than one private repo by separating them with comma (,)
+* Connection Time Out Error on EC2
+
+  ```posh
+  exit status 128:
+  fatal: unable to connect to git-codecommit.us-west-2.amazonaws.com:
+  git-codecommit.us-west-2.amazonaws.com[0: ww.xx.yy.zz]: errno=Connection timed out
+  ```
+
+  In this case, you will have to provide ec2 an access to Codecommit and then set this environment variable
+
+  ```posh
+  set GONOSUMDB=git-codecommit.us-west-2.amazonaws.com/v1/repos/some.private.repo.git
+  ```
+
+  Better way will be to simply store this variables in `/etc/environment` permanently. `/etc/environment` stores all key-value pairs of environment variables
+
+## Reference
+
+* [Private Repo in Go](https://stackoverflow.com/questions/57885949/private-repo-go-1-13-go-mod-failed-ping-sum-golang-org-lookup-ver/57887036#57887036)
