@@ -20,3 +20,4 @@ Below are the links for respective README.md files in my repository
 * [Basic MySQL Operations in GoLang](https://aasisodiya.github.io/go/golang-mysql-basic-operations/)
 * [Go Lang Pluralsight Quiz](https://aasisodiya.github.io/go/golang-pluralsight-qa/)
 * [Postgres Operations in GoLang](https://aasisodiya.github.io/go/golang-postgres-basic-operations/)
+* [Data Conversion in Go](https://aasisodiya.github.io/go/golang-general/golang-data-types/)
