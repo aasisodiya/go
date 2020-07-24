@@ -214,7 +214,7 @@ The generated profile graph looks like given below
 
 ![SVG Graph](img/graph.svg)
 
-[View Full SVG Graph](img/graph.svg)
+<!-- [View Full SVG Graph](img/graph.svg) -->
 <!-- <img src="img/graph.svg" style="height:500px; width:500px"> -->
 
 You can clearly identify the root cause from here based on the size of node and work to fix it.
