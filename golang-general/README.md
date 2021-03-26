@@ -1,4 +1,4 @@
 # General
 
-* [Data Conversion in Go](./golang-general/golang-data-types/README.md)
-* [QnA](./golang-general/golang-qna/README.md)
+* [Data Conversion in Go](https://aasisodiya.github.io/go/golang-general/golang-data-types/)
+* [QnA](https://aasisodiya.github.io/go/golang-general/golang-qna/)
