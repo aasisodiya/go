@@ -26,3 +26,14 @@ Todo:
     ✔ Get Item @done(20-02-29 19:48)
     ✔ Put Item @done(20-02-29 19:48)
     ✔ Delete Item @done(20-02-29 19:48)
+
+    Typing go build does not work with relative import paths; you must type go build main.go.
+
+go install does not work at all with relative import paths.
+
+It is documented at https://golang.org/cmd/go/#hdr-Relative_import_paths
+
+
+- go mod init package-name
+- go mod tidy
+- go build

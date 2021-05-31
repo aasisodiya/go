@@ -2,7 +2,7 @@ package main
 
 // Step 2: Import Package
 import (
-	"./aws"
+	"main/aws"
 	"fmt"
 )
 

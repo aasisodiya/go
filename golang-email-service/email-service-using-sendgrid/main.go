@@ -2,8 +2,8 @@ package main
 
 // Step 1: Import Models and S
 import (
-	"./models"
-	"./services"
+	"main/models"
+	"main/services"
 )
 
 // Example demonstrating how to use the SendEmail Function
