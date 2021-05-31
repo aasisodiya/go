@@ -181,7 +181,7 @@ func main() {
 	log.SetOutput(logFile)
 	// New ----------------
 	log.Println("Main()")
-	srv, err := daemon.New(cfg.Service.Name, description, dependencies...)
+	srv, err := daemon.New(cfg.Service.Name, description, daemon.SystemDaemon, dependencies...)
 	if err != nil {
 		errlog.Println("Error: ", err)
 		os.Exit(1)
