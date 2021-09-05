@@ -26,6 +26,8 @@ Below are the links for respective README.md files in my repository
   - [Data Conversion in Go](https://aasisodiya.github.io/go/golang-general/golang-data-types/)
   - [QnA](https://aasisodiya.github.io/go/golang-general/golang-qna/)
 
-| Date        | Content                                                                                          |
-| ----------- | ------------------------------------------------------------------------------------------------ |
-| 26-Aug-2021 | [Code Coverage in Go Lang](https://aasisodiya.github.io/go/golang-general/golang-code-coverage/) |
+| Date        | Content                                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------ |
+| 26-Aug-2021 | [Code Coverage in Go Lang](https://aasisodiya.github.io/go/golang-general/golang-code-coverage/)                         |
+| 06-Sep-2021 | [Execution Time in Go](https://aasisodiya.github.io/go/golang-general/golang-execution-time)                             |
+| 06-Sep-2021 | [Benchmarking in Go Lang](https://aasisodiya.github.io/go/golang-general/golang-execution-time/#benchmarking-in-go-lang) |
