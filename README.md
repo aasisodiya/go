@@ -31,3 +31,4 @@ Below are the links for respective README.md files in my repository
 | 26-Aug-2021 | [Code Coverage in Go Lang](https://aasisodiya.github.io/go/golang-general/golang-code-coverage/)                         |
 | 06-Sep-2021 | [Execution Time in Go](https://aasisodiya.github.io/go/golang-general/golang-execution-time)                             |
 | 06-Sep-2021 | [Benchmarking in Go Lang](https://aasisodiya.github.io/go/golang-general/golang-execution-time/#benchmarking-in-go-lang) |
+| 17-Sep-2021 | [Get Parameter from AWS SSM PS](https://aasisodiya.github.io/go/golang-aws-operations/aws-parameter-store/)              |
