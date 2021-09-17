@@ -32,3 +32,4 @@ Below are the links for respective README.md files in my repository
 | 06-Sep-2021 | [Execution Time in Go](https://aasisodiya.github.io/go/golang-general/golang-execution-time)                             |
 | 06-Sep-2021 | [Benchmarking in Go Lang](https://aasisodiya.github.io/go/golang-general/golang-execution-time/#benchmarking-in-go-lang) |
 | 17-Sep-2021 | [Get Parameter from AWS SSM PS](https://aasisodiya.github.io/go/golang-aws-operations/aws-parameter-store/)              |
+| 18-Sep-2021 | [Go Lang Simple Server](https://aasisodiya.github.io/go/golang-simple-server/)              |
