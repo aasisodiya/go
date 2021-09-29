@@ -1,5 +1,9 @@
 # QnA in Go Lang
 
+- [QnA in Go Lang](#qna-in-go-lang)
+  - [Marshaling Empty Array Gives Null](#marshaling-empty-array-gives-null)
+  - [`go get -u` Not updating the go build](#go-get--u-not-updating-the-go-build)
+
 ## Marshaling Empty Array Gives Null
 
 **Problem**: While Marshaling an Empty Array of an Object while sending back the response in JSON in Lambda, It showed response as Null. (Sample to demosntrate the same is given below.) But I needed response as an empty array in JSON to represent proper data.
@@ -17,3 +21,11 @@ fmt.Println(string(jsonObject2)) // []
 ```
 
 **Reason/Solution**: So the solution was to make sure that if the array was never initialized then simply return the initialized empty array `[]int{}`. This way when you Marshal it, it doesn't gives you null and instead gives an empty array as expected. (Code to demonstrate the same is in above sample)
+
+---
+
+## `go get -u` Not updating the go build
+
+**Problem**: I had an external package on codecommit, which I was using in my code. Now there were some updates made to the external package (on codecommit) and I wanted to use the same updated code. So I tried running `go get -u git-codecommit.us-west-2-url` to update the version. But when I build the code the version resets in go.mod to the old version.
+
+**Reason/Solution**: So the reason for this was that my internal shared packages were referring to the old version of the external package (on codecommit). So i had to update those referenced version. This in turn resolved the issue.
