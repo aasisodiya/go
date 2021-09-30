@@ -1,0 +1,5 @@
+mode: set
+github.com/aasisodiya/go/codecoverage/service/sample.service.go:20.30,22.2 1 1
+github.com/aasisodiya/go/codecoverage/service/sample.service.go:25.43,27.2 1 1
+github.com/aasisodiya/go/codecoverage/service/sample.service.go:30.40,32.2 1 1
+github.com/aasisodiya/go/codecoverage/main.go:9.13,15.2 4 1
