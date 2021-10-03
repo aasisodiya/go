@@ -4,8 +4,8 @@ Below are the links for respective README.md files in my repository
 
 - [Index](https://aasisodiya.github.io/go/)
 - [Lambda using GoLang](https://aasisodiya.github.io/go/golang-aws-lambda/)
-  - [-Read Parent Doc](https://aasisodiya.github.io/go/golang-aws-lambda/aws-lambda-custom/)
-  - [-Read Parent Doc](https://aasisodiya.github.io/go/golang-aws-lambda/aws-lambda-with-apigw/)
+  - [Sample code for Lambda demonstrating Custom Request and Response](https://aasisodiya.github.io/go/golang-aws-lambda/)
+  - [Sample code for Lambda with API Gateway as trigger](https://aasisodiya.github.io/go/golang-aws-lambda/aws-lambda-with-apigw/)
 - [AWS Operations in GoLang](https://aasisodiya.github.io/go/golang-aws-operations/)
   - [AWS DynamoDB Operations in GoLang](https://aasisodiya.github.io/go/golang-aws-operations/aws-dynamodb/)
   - [AWS S3 Operations in GoLang](https://aasisodiya.github.io/go/golang-aws-operations/aws-s3/)
