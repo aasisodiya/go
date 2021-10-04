@@ -34,3 +34,4 @@ Below are the links for respective README.md files in my repository
 | 17-Sep-2021 | [Get Parameter from AWS SSM PS](https://aasisodiya.github.io/go/golang-aws-operations/aws-parameter-store/)                             |
 | 18-Sep-2021 | [Go Lang Simple Server](https://aasisodiya.github.io/go/golang-simple-server/)                                                          |
 | 30-Sep-2021 | [`go get -u` Not updating the go build](https://aasisodiya.github.io/go/golang-general/golang-qna/#go-get--u-not-updating-the-go-build) |
+| 05-Oct-2021 | [`os.Exit()` Notes](https://aasisodiya.github.io/go/golang-general/#osexit-notes)                                                       |
