@@ -36,3 +36,4 @@ Below are the links for respective README.md files in my repository
 | 30-Sep-2021 | [`go get -u` Not updating the go build](https://aasisodiya.github.io/go/golang-general/golang-qna/#go-get--u-not-updating-the-go-build) |
 | 05-Oct-2021 | [`os.Exit()` Notes](https://aasisodiya.github.io/go/golang-general/#osexit-notes)                                                       |
 | 06-Oct-2021 | [Powershell Command to Test API](https://aasisodiya.github.io/go/golang-simple-server/#powershell-command-to-test)                      |
+| 07-Oct-2021 | [Go Lang Basics](https://aasisodiya.github.io/go/golang-general/golang-basics)                                                          |
