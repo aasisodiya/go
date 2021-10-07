@@ -6,6 +6,7 @@
   - [Data Types in Go](#data-types-in-go)
   - [Sub String in String](#sub-string-in-string)
   - [Switch in Go](#switch-in-go)
+  - [Important Points on Go](#important-points-on-go)
 
 ## What is Go?
 
@@ -114,3 +115,76 @@ switch word {
     // do something
 }
 ```
+
+## Important Points on Go
+
+- Go doesn't support ([Optional or Named Parameters](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/named-and-optional-arguments))
+- Go doesn't support function overloading (i.e. you cannot have 2 function with same name declared within same scope, even if they have different number/types of parameters)
+- Use `_` i.e. underscore to ignore a value
+- All function calls in go are call by value i.e. a copy of value of variable is passed to the function, and not the reference to variable itself. Example to demo the same is given below
+
+  ```go
+  package main
+
+  import (
+    "fmt"
+  )
+
+  func test(a int, str string, arr [2]int) {
+    a = a * 2
+    for i := 0; i < len(arr); i++ {
+      arr[i] *= 2
+    }
+    str += "test"
+    fmt.Println("inside function:", a, str, arr)
+  }
+  func main() {
+    a := 89
+    str := "this is "
+    arr := [2]int{2, 3}
+    test(a, str, arr)
+    fmt.Println("inside main:", a, str, arr)
+  }
+  ```
+
+  Above program output is given below, [Click Here](https://gt/p/NyC3s0oE2Mr) to open/run/edit the code
+
+  ```txt
+  inside function: 178 this is test [4 6]
+  inside main: 89 this is  [2 3]
+  ```
+
+- You can assign a function to a variable. For example in above code you can do the following and it will still work.
+
+  ```go
+  newfunc := test
+  // and now use newfunc instead of test
+  newfunc(a, str, arr)
+  ```
+
+  [Click Here](https://play.golang.org/p/JDic0kCJZqD) to open/run/edit the code
+
+- You cannot declare a function inside another function, but you can always use anonymous function inside a function. Example of the same is given below
+
+  ```go
+  package main
+
+  import (
+    "fmt"
+  )
+
+  func main() {
+    //func test() string {
+    //return "Test"
+    //}
+    // Above code will give you compile error
+    anonymous := func() string {
+      return "Anonymous"
+    }
+    fmt.Println(anonymous())
+  }
+  ```
+
+  [Click Here](https://play.golang.org/p/I35K7Jcf3_E) to open/run/edit the code
+
+- You can pass function as argument as well, for ex. `func test(f func(int)int)` here function `test` will take any function with given signature i.e. that take input `int` and return `int` ex. `func foo(int a) int`. Another best example is `http.HandleFunc("/welcome", printWelcome)`
