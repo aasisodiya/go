@@ -7,6 +7,11 @@
   - [Sub String in String](#sub-string-in-string)
   - [Switch in Go](#switch-in-go)
   - [Important Points on Go](#important-points-on-go)
+  - [Random Number in Go](#random-number-in-go)
+  - [`go get` Command](#go-get-command)
+  - [Arrays in Go](#arrays-in-go)
+  - [Slices in Go](#slices-in-go)
+  - [Map in Go](#map-in-go)
 
 ## What is Go?
 
@@ -21,6 +26,8 @@
 - Go has garbage collection and is memory efficient. A well written go code can use upto 1/2 of that resource used by a Java Program.
 - Go takes advantage of multiple cores. It has built-in concurrency.
 - Well Known Projects That are written using Go - Hugo (Static Site Generator), Caddy (Web Server), Prometheus (Monitoring system & time series database), Docker, Kubernetes.
+
+---
 
 ## Variable Declaration in Go
 
@@ -37,6 +44,8 @@ i := 10
 
 **Note**: You can not use short hand syntax out of function. For declaring package level variable var keyword is must. Type can be left out if it can be inferred. In Go all declared variable have a value. Also a declared variable needs to be used, else it will give you an error on compile.
 
+---
+
 ## Data Types in Go
 
 Following are list of types in go
@@ -49,6 +58,8 @@ Following are list of types in go
 - rune // alias for int32 and represents a Unicode code point
 - float32 float64
 - complex64 complex128
+
+---
 
 ## Sub String in String
 
@@ -77,6 +88,8 @@ func main() {
 ```
 
 > [Click here](https://play.golang.org/p/bOcEQwgSnAM) to open/edit/run above code
+
+---
 
 ## Switch in Go
 
@@ -115,6 +128,8 @@ switch word {
     // do something
 }
 ```
+
+---
 
 ## Important Points on Go
 
@@ -188,3 +203,126 @@ switch word {
   [Click Here](https://play.golang.org/p/I35K7Jcf3_E) to open/run/edit the code
 
 - You can pass function as argument as well, for ex. `func test(f func(int)int)` here function `test` will take any function with given signature i.e. that take input `int` and return `int` ex. `func foo(int a) int`. Another best example is `http.HandleFunc("/welcome", printWelcome)`
+- Relative path package import is not considered as good practice.
+
+---
+
+## Random Number in Go
+
+For getting/generating a random number in go you can use `"math/rand"` package. Example for the same is given below
+
+```go
+package main
+
+import (
+	"fmt"
+	"math/rand"
+)
+
+func main() {
+	rand.Seed(1)
+	fmt.Println("Random Number", rand.Intn(10)) // 1
+	fmt.Println("Random Number", rand.Intn(10)) // 7
+}
+```
+
+> [Click Here](https://play.golang.org/p/xfBMX9_3kON) to edit/run the code
+
+---
+
+## `go get` Command
+
+You can use `go get` command to import any external public package. Example `go get github.com/aasisodiya/go`
+
+> Here is the list of all awesome packages in go [Click Here](https://github.com/avelino/awesome-go)
+
+---
+
+## Arrays in Go
+
+Declaring an Array
+
+```go
+var myArray [10]int
+```
+
+Initializing an Array
+
+```go
+var arr1 = [5]int{} // will initialize an array with 0 i.e [0,0,0,0,0]
+var arr2 = [5]int{1,2,3} // will initialize an array of size 5 filled with values given in {} and then followed by 0 i.e [1,2,3,0,0]
+var arr2 = [5]int{1,2,3,4,5} // will initialize an array of size 5 i.e [1,2,3,4,5]
+var arr3 = […]int{1,2,3,4}   // the compiler will count the array elements for you
+```
+
+---
+
+## Slices in Go
+
+Slice is a growable sequence of values of a single specified type. You can create a slice with slice literal i.e. same as an array but without specifying size, or by using `make([]T, len, cap) []T` function where T is type, len is length, cap is capacity.
+
+Declaring a Slice
+
+```go
+var intSlice []int
+```
+
+Initialize a Slice
+
+```go
+var intSlice = []int{1,2,3} // [1 2 3]
+len(intSlice) // 3
+cap(intSLice) // 3
+// OR
+var intSlice = make([]int, 2, 4) // [0, 0, nil, nil] i.e. that will just print [0 0]
+len(intSlice) // 2
+cap(intSLice) // 4
+```
+
+Example of Slice is given below
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	exampleSlice := make([]string, 0) // this will create an empty slice
+  // exampleSlice := []string{}
+	exampleSlice = append(exampleSlice, "Akash") // so when you append a string size become 1
+	fmt.Println(len(exampleSlice)) // 1
+	exampleSlice = append(exampleSlice, "Akash")
+	fmt.Println(len(exampleSlice)) // 2
+	exampleSlice2 := make([]string, 4) // but this will create a slice with size 4 with empty strings
+	exampleSlice2 = append(exampleSlice2, "Akash") // so when you append a string it get added to 
+  // existing 4 elements and thus size become 5
+	fmt.Println(len(exampleSlice2)) // 5
+}
+```
+
+> [Click Here](https://play.golang.org/p/IrGzSo4fiuj) to run/edit the code
+
+---
+
+## Map in Go
+
+A map is a data type that associates a value of one data type to a value of another data type. You can create a map using `make`
+
+```go
+m := make(map[string]int)
+// OR
+m := map[string]int{}
+m := map[string]int{
+  "a":1,
+  "b":2,
+  "c":3,
+}
+```
+
+Order of iteration in map is completely random, you can not rely on map for its value to be in a same order.
+
+To add a value to map you can simply do `m["d"]=4` and to Remove a value from map using `delete` i.e `delete(m, "b")`
+
+---
