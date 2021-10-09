@@ -12,6 +12,14 @@
   - [Arrays in Go](#arrays-in-go)
   - [Slices in Go](#slices-in-go)
   - [Map in Go](#map-in-go)
+  - [Struct in Go](#struct-in-go)
+  - [Struct Tags](#struct-tags)
+  - [Methods in Go](#methods-in-go)
+  - [Define Methods on Type](#define-methods-on-type)
+  - [Interfaces in Go](#interfaces-in-go)
+  - [Type Assertion Vs Conversion](#type-assertion-vs-conversion)
+  - [Type Switch](#type-switch)
+  - [Errors in Go](#errors-in-go)
 
 ## What is Go?
 
@@ -296,7 +304,7 @@ func main() {
 	exampleSlice = append(exampleSlice, "Akash")
 	fmt.Println(len(exampleSlice)) // 2
 	exampleSlice2 := make([]string, 4) // but this will create a slice with size 4 with empty strings
-	exampleSlice2 = append(exampleSlice2, "Akash") // so when you append a string it get added to 
+	exampleSlice2 = append(exampleSlice2, "Akash") // so when you append a string it get added to
   // existing 4 elements and thus size become 5
 	fmt.Println(len(exampleSlice2)) // 5
 }
@@ -326,3 +334,319 @@ Order of iteration in map is completely random, you can not rely on map for its 
 To add a value to map you can simply do `m["d"]=4` and to Remove a value from map using `delete` i.e `delete(m, "b")`
 
 ---
+
+## Struct in Go
+
+First of all Structs are not Objects!, as there is no inheritance in structs. They might be similar. To create struct we use keyword `struct` as given in below example
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+type Sample struct {
+	PublicProperty  string
+	privateProperty int
+}
+
+func main() {
+	s0 := Sample{}            // Init with default values
+	s1 := Sample{"Value1", 8} // For such initialization all fields must be specified
+	s2 := Sample{             // For such initialization, you don't need to specify every field
+		privateProperty: 90,
+	}
+	s2.PublicProperty = "Value"
+	s2.privateProperty = 900
+	fmt.Println(s0, s1, s2)
+  // { 0} {Value1 8} {Value 900}
+}
+
+```
+
+> [Click Here](https://play.golang.org/p/KMbOfl8lS6L) to run above code
+
+Example of embedded struct is given below
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+type SimpleStruct struct {
+	A string
+	B int
+}
+
+type AnotherStruct struct {
+	C string
+	D SimpleStruct
+}
+
+type EmbeddedStruct struct {
+	A string
+	SimpleStruct
+}
+
+func main() {
+	s := SimpleStruct{A: "a string", B: 8}
+	as := AnotherStruct{C: "c string", D: s}
+	es := EmbeddedStruct{A: "em string", SimpleStruct: s}
+	fmt.Println(s, as, es)
+	fmt.Println(as.D.A)
+	fmt.Println(es.A)
+	fmt.Println(es.B) // Using embedded struct you can directly access the property of embedded struct
+	// But what about property A?? as it is similar to that of property in EmbeddedStruct
+	// For such scenario you can use the the struct name, example give below
+	fmt.Println(es.SimpleStruct.A)
+	fmt.Println(es.SimpleStruct.B)
+}
+```
+
+> [Click Here](https://play.golang.org/p/9p2pcGbp5VF) to edit/run above code
+
+---
+
+## Struct Tags
+
+Go allows to put metadata on fields of struct, which is used for marshalling and unmarshalling data from into/out of struct. `json:"name"` is called a struct tag
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type Car struct {
+	Name string `json:"name"`
+	Cost int    `json:"cost"`
+}
+
+func main() {
+	car1 := `{
+		"name":"Audi R8",
+		"cost":150000
+	}`
+	var audi Car
+	json.Unmarshal([]byte(car1), &audi)
+	fmt.Println(audi)
+	audiCar, err := json.Marshal(audi)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(string(audiCar))
+}
+```
+
+> [Click Here](https://play.golang.org/p/V8ZH798HQJ2) to edit/run the code
+
+---
+
+## Methods in Go
+
+Method declaration has a method receiver declared between keyword `func` and the name of the method. Method receiver looks like parameter declaration.
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+type Car struct {
+	Name string `json:"name"`
+	Cost int    `json:"cost"`
+}
+
+func (c *Car) DisplayData() {
+	fmt.Println(fmt.Sprintf("%s has cost of %d dollars", c.Name, c.Cost))
+}
+
+func (c *Car) ChangeName(newName string) {
+	c.Name = newName
+	fmt.Println("Name Updated to ", newName)
+}
+
+func (c Car) ChangeCost(newCost int) {
+	c.Cost = newCost
+	fmt.Println("Cost Updated to ", newCost)
+}
+
+func main() {
+	audi := Car{"Audi R8", 150000}
+	audi.DisplayData() // Audi R8 has cost of 150000 dollars
+	audi.ChangeName("Audi R8 V10") // Name Updated to  Audi R8 V10
+	audi.DisplayData() // Audi R8 V10 has cost of 150000 dollars
+	audi.ChangeCost(200000) // Cost Updated to  200000
+	audi.DisplayData() // Audi R8 V10 has cost of 150000 dollars
+}
+```
+
+> [Click Here](https://play.golang.org/p/AsN8-3Dn0Mh) to edit/run above code
+
+You might notice that name changes but cost doesn't that is because, for method `ChangeName` we used reference receiver i.e. `(c *car)` whereas for `ChangeCost` method we use value receiver i.e. `(c Car)`. So when you use `(c Car)` you're actually creating a copy and updating its value. But when you use `(c *car)` you are actually referencing the actual property and thus it gets updated correctly.
+
+In Conclusion use value receiver when you are not modifying the value of the struct and use reference receiver when you are modifying the value of the struct.
+
+---
+
+## Define Methods on Type
+
+In go you can define methods on type. Example of the same is given below
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+type myInt int
+
+func (mi myInt) isEven() bool {
+	return mi%2 == 0
+}
+
+func main() {
+	m := myInt(10)
+	fmt.Println(m)
+	fmt.Println(m.isEven())
+}
+```
+
+> [Click Here](https://play.golang.org/p/zH44BsRKwYz) to edit/run above code
+
+---
+
+## Interfaces in Go
+
+A Type that lists a set of methods but provides no implementation. Sample code is given below
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+type Sample interface {
+	Test(int) bool
+}
+
+type A struct {
+	num1 int
+	num2 int
+}
+
+type B struct {
+	num1 int
+}
+
+func (b B) Test(i int) bool {
+	return b.num1 > i
+}
+
+func (a A) Test(i int) bool {
+	return a.num1 > i && a.num2 < i
+}
+
+func main() {
+	samples := []Sample{
+		A{10, 2},
+		B{7},
+	}
+	for _, sample := range samples {
+		fmt.Println(sample.Test(5))
+		fmt.Println(sample.Test(8))
+	}
+}
+```
+
+> [Click here](https://play.golang.org/p/6i6O4krk2Q3) to edit/run the code
+
+---
+
+## Type Assertion Vs Conversion
+
+In Type Conversion, you are changing the type i.e. int to float and so on. But for Type Assertion you are revealing the underlying type and stripping away the interface that wraps it. You can only do type assertion on an interface. You can do type conversion on any type.
+
+Empty Interface in Go, i.e. with no methods at all. Any types could match this.
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var i interface{}
+	i = "string"
+	j := i.(string)
+	fmt.Println(i, j)
+	k, ok := i.(int)
+	fmt.Println(k, ok)
+	// m := i.(int) this will panic as its wrong assertion
+}
+```
+
+> [Click here](https://play.golang.org/p/6jhVv1XJgo6) to edit/run the code
+
+When doing type assertion you need to be sure that type is correct else code will panic.
+
+---
+
+## Type Switch
+
+`i.(type)` such code outside of switch block will given an error. Sample code of type switch is given below.
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func typeCheck(i interface{}) {
+	switch i := i.(type) {
+	case int:
+		fmt.Println("Its Integer:", i)
+	case string:
+		fmt.Println("Its String:", i)
+	default:
+		fmt.Println("Type Unknown:", i)
+	}
+}
+
+func main() {
+	var i interface{}
+	i = "string"
+	typeCheck(i) // Its String: string
+	i = 1000
+	typeCheck(i) // Its Integer: 1000
+	i = 10.0
+	typeCheck(i) // Type Unknown: 10
+}
+```
+
+> [Click Here](https://play.golang.org/p/4HRcJG4fAOw) to edit/run the code
+
+---
+
+> `type testFunc func(int) bool` is also a valid code
+> Interface is only nil if there is no underlying value assigned to it
+
+---
+
+## Errors in Go
+
+- There are no exceptions in Go
+- By convention the last return value is usually error
+- You just have to put in extra code to make sure there are all required validations and error checks and nothing gets skipped
+- New Error can be defined using `errors.New()`
+- Most usefull errors package are `"errors"` and `"github.com/pkg/errors"`
