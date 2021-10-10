@@ -1,25 +1,32 @@
 # Go Lang
 
 - [Go Lang](#go-lang)
-  - [What is Go?](#what-is-go)
-  - [Variable Declaration in Go](#variable-declaration-in-go)
-  - [Data Types in Go](#data-types-in-go)
-  - [Sub String in String](#sub-string-in-string)
-  - [Switch in Go](#switch-in-go)
-  - [Important Points on Go](#important-points-on-go)
-  - [Random Number in Go](#random-number-in-go)
-  - [`go get` Command](#go-get-command)
-  - [Arrays in Go](#arrays-in-go)
-  - [Slices in Go](#slices-in-go)
-  - [Map in Go](#map-in-go)
-  - [Struct in Go](#struct-in-go)
-  - [Struct Tags](#struct-tags)
-  - [Methods in Go](#methods-in-go)
-  - [Define Methods on Type](#define-methods-on-type)
-  - [Interfaces in Go](#interfaces-in-go)
-  - [Type Assertion Vs Conversion](#type-assertion-vs-conversion)
-  - [Type Switch](#type-switch)
-  - [Errors in Go](#errors-in-go)
+	- [What is Go?](#what-is-go)
+	- [Variable Declaration in Go](#variable-declaration-in-go)
+	- [Data Types in Go](#data-types-in-go)
+	- [Sub String in String](#sub-string-in-string)
+	- [Switch in Go](#switch-in-go)
+	- [Important Points on Go](#important-points-on-go)
+	- [Random Number in Go](#random-number-in-go)
+	- [`go get` Command](#go-get-command)
+	- [Arrays in Go](#arrays-in-go)
+	- [Slices in Go](#slices-in-go)
+	- [Map in Go](#map-in-go)
+	- [Struct in Go](#struct-in-go)
+	- [Struct Tags](#struct-tags)
+	- [Methods in Go](#methods-in-go)
+	- [Define Methods on Type](#define-methods-on-type)
+	- [Interfaces in Go](#interfaces-in-go)
+	- [Type Assertion Vs Conversion](#type-assertion-vs-conversion)
+	- [Type Switch](#type-switch)
+	- [Errors in Go](#errors-in-go)
+	- [CSP & Go Routines](#csp--go-routines)
+	- [Channels for Sending Data between Go Routines](#channels-for-sending-data-between-go-routines)
+	- [Buffer Channel](#buffer-channel)
+	- [Deadlock in Go Routine](#deadlock-in-go-routine)
+	- [Closing a channel](#closing-a-channel)
+	- [Select in Go](#select-in-go)
+	- [Reference](#reference)
 
 ## What is Go?
 
@@ -650,3 +657,299 @@ func main() {
 - You just have to put in extra code to make sure there are all required validations and error checks and nothing gets skipped
 - New Error can be defined using `errors.New()`
 - Most usefull errors package are `"errors"` and `"github.com/pkg/errors"`
+
+---
+
+## CSP & Go Routines
+
+- Usually concurrency in most languages are defined using threads as unit of execution. Each thread is mapped to os-level thread. They share data data by acquiring locks on shared pieces of data. Many languages have concurrency support in their libraries.
+- Concurrency in Go is different and its concurrency model is based on CSP (Communicating Sequential Process) and is built into the language.
+- Go Routines are lightweight processes managed by the Go Runtime
+- Go Routines are not threads, threads are managed by OS while the go routines are managed by go runtime scheduler.
+- Go Runtime Schedules go routines across threads automatically
+- The Go Runtime increases the number of threads at start-up and schedule go routines across this threads automatically.
+- Go Routines have several benefits:
+  - Go Routine creation is faster than thread creation (Why? because you are not creating os-level resource)
+  - Go Routine stack sizes are smaller than thread stack sizes and can grow as needed
+  - Switching between go routines is faster than switching between threads.
+  - Due to all this features go can spawn 1000 and 10000 of go routines (in a single process)
+
+Sample Go Routine Code is given below
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func test() {
+	fmt.Println("Go Routine executed me")
+}
+
+func main() {
+	go test()
+}
+```
+
+> [Click here](https://play.golang.org/p/tB51QPoIsk5) to edit/run the code
+
+When you run the above code you will notice that you don't get any output. That is because main go routine didn't knew it had to wait for the other goroutine to finish execution. So for our go routine to execute we have different ways:
+
+- By Pausing using `time.Sleep(1*time.Second)`, **This is not recommended in real programs and should be avoided**
+- By using Wait Group, for which we use `"sync"` package
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+func test() {
+	fmt.Println("Go Routine executed me")
+}
+
+func main() {
+	var wg sync.WaitGroup
+	// We don't have to initialize it, just declare it
+	wg.Add(1)
+	// This tells the wait group that we have added 1 go routine to run
+	// Now we launch a closure as a go routine
+	go func() {
+		test()
+		// Now we call Done method to notify that go routine has completed
+		wg.Done()
+	}()
+	// Now here at last we call Wait on wait group
+	wg.Wait()
+	// Wait helps us to make sure that go routine finish execution
+}
+```
+
+> [Click Here](https://play.golang.org/p/AAJy3FTQbl6) to edit/run above code
+
+For best practices try keeping concurrency logic different from business logic.
+
+Now lets have a look at go routine with data, First code uses direct reference to the data. Thus You won't get the output you expect, because all go routine share the same variable. If you run `go vet` for below code you will get following error: `./prog.go:18:9: loop variable i captured by func literal`
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+func test(i int) {
+	fmt.Println("Go Routine executed me: ", i)
+}
+
+func main() {
+	var wg sync.WaitGroup
+	// direct reference (You won't get the output you expect, because all go routine share the same variable)
+	for i := 0; i < 100; i++ {
+		wg.Add(1)
+		go func() {
+			test(i)
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+}
+```
+
+> [Click Here](https://play.golang.org/p/r3jNmOb22IY) to edit/run above code
+
+If you want to pass different parameter to each go routine, You should pass i as parameter to the go routine. As shown in below code
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+func test(i int) {
+	fmt.Println("Go Routine executed me: ", i)
+}
+
+func main() {
+	var wg sync.WaitGroup
+	// direct reference (You won't get the output you expect, because all go routine share the same variable)
+	for i := 0; i < 10; i++ {
+		wg.Add(1)
+		go func(x int) {
+			test(x)
+			wg.Done()
+		}(i)
+	}
+	wg.Wait()
+}
+```
+
+> [Click Here](https://play.golang.org/p/uKosu1pilSb) to edit/run above code
+
+---
+
+## Channels for Sending Data between Go Routines
+
+- Channel is another built-in type in Go which is used for transferring data between go routines
+- Multiple Go Routines can write to a single channel and Multiple Go Routines can read from a single channel
+- Data on channel is typed. ex. `make(chan string)` is used to create a channel of typed string
+- By Default channel reads and writes are synchronous. i.e. when a go routines writes to a channel it pauses until another go routines read from that channel and vice versa i.e. a go routine pauses when it read from channel and resume only when there is data available to read.
+
+Sample code for channel is given below
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	in := make(chan string)
+	defer close(in)
+	out := make(chan string)
+	defer close(out)
+
+	go func() {
+		name := <-in                         // Reading a value from channel
+		out <- fmt.Sprintf("Hello, " + name) // Writing a value to a channel
+	}()
+	in <- "Akash"    // Writing a value to a channel
+	message := <-out // Reading a value from a channel
+	fmt.Println(message)
+}
+```
+
+> [Click Here](https://play.golang.org/p/etpjJucNXoV) to edit/run above code
+
+## Buffer Channel
+
+- If you do not want to wait for a channel to be read after you write to it. For such scenario we can use buffer channel.
+- A buffer channel lets you write a specified number of times before there is a read on the channel
+- A buffer is never infinite
+- If you fill out a buffer, your write will pause the go routine until there is a read on the channel from another go routine.
+- Example: `pool := make(chan func(int)int, workers)`
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	out := make(chan int, 10)
+	defer close(out)
+	for i := 0; i < 10; i++ {
+		go func(localI int) {
+			out <- localI
+		}(i)
+	}
+	var result []int
+	for i := 0; i < 10; i++ {
+		val := <-out
+		result = append(result, val)
+	}
+	fmt.Println(result)
+}
+```
+
+> [Click Here](https://play.golang.org/p/x5cd4d3YuYE) to edit/run above code
+
+---
+
+## Deadlock in Go Routine
+
+Sample code for dead lock in go routine is given below
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	in := make(chan int)
+	defer close(in)
+	out := make(chan int)
+	defer close(out)
+	go func() {
+		for {
+			i := <-in
+			out <- i * 2
+		}
+	}()
+	in <- 1
+	in <- 2
+	o1 := <-out
+	o2 := <-out
+	fmt.Println(o1, o2)
+}
+```
+
+> [Click Here](https://play.golang.org/p/9bjuxXxS2VS) to edit/run above code
+
+When you run above code you will get following output, showing a deadlock has occurred
+
+```text
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [chan send]:
+main.main()
+	/tmp/sandbox2823182645/prog.go:19 +0x136
+
+goroutine 6 [chan send]:
+main.main.func1()
+	/tmp/sandbox2823182645/prog.go:15 +0x55
+created by main.main
+	/tmp/sandbox2823182645/prog.go:12 +0x10f
+
+Program exited: status 2.
+```
+
+Now to solve above issue you have an option of making channel in/out as buffered channel of size greater than or equal to 2. [Click here](https://play.golang.org/p/yuf6EmIE_zr) to run this scenario. But this solution is very specific to above scenario. So another better solution will be to make sure that you read the channel before you write any other value to the channel. [Click here](https://play.golang.org/p/nrZtSBATwhH) to run this scenario
+
+---
+
+## Closing a channel
+
+When there is no more data to write to a channel, then only the channel can be closed. Some important points on closing a channel:
+
+- Closing a channel does not vipes out its content
+- Closing the channel means that it will not have any more values written to it
+- Zero value for a channel is nil
+- If a buffered channel is closed, any value in buffer is still available for it to be read.
+- You must write to a closed channel / call close second time on a closed channel. If you do any then your program will panic.
+- If you read from a closed channel with no more data then read returns with zero value of the type of the channel. Ex. for channels of int we get 0, for string we get empty string.
+
+But then how to know if the value is from a closed channel? for that we using `val, ok := <-chan` idiom. If value ok is true then channel is still open and if the value is false then channel is closed.
+
+| Operation | Unbuffered                       | Buffered                  | nil          | closed                                                              |
+| --------- | -------------------------------- | ------------------------- | ------------ | ------------------------------------------------------------------- |
+| read      | Pause until something is written | pause if buffer is empty  | Hang forever | Return immediately w/zero value (use comma-ok to see if its closed) |
+| write     | Pause until something is read    | Pause only if buffer full | Hang forever | PANIC                                                               |
+| close     | Works                            | Works                     | PANIC        | PANIC                                                               |
+
+---
+
+## Select in Go
+
+- Control Structure for Concurrency in Go
+- You also reach a deadlock if you write to a channel but there is no read on it or vice versa.
+- select is the key to ensure non blocking reads and writes from channel. Simply put your channel reads and write with a default.
+- We use done channel pattern with select
+
+---
+
+## Reference
+
+- [Effective Go](https://golang.org/doc/effective_go)
+- [Standard Tools](https://golang.org/doc/cmd)
+- [Learn Go in 3 Hours](https://www.udemy.com/course/learn-go-in-3-hours/)
