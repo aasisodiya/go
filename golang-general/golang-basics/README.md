@@ -2,6 +2,7 @@
 
 - [Go Lang](#go-lang)
 	- [What is Go?](#what-is-go)
+	- [Go Commands](#go-commands)
 	- [Variable Declaration in Go](#variable-declaration-in-go)
 	- [Data Types in Go](#data-types-in-go)
 	- [Sub String in String](#sub-string-in-string)
@@ -26,7 +27,12 @@
 	- [Deadlock in Go Routine](#deadlock-in-go-routine)
 	- [Closing a channel](#closing-a-channel)
 	- [Select in Go](#select-in-go)
+	- [Testing in Go](#testing-in-go)
+	- [Printing out an Object](#printing-out-an-object)
+	- [Pointer in Go](#pointer-in-go)
 	- [Reference](#reference)
+
+![Visitor](https://visitor-badge.glitch.me/badge?page_id=aasisodiya.go)
 
 ## What is Go?
 
@@ -44,6 +50,19 @@
 
 ---
 
+## Go Commands
+
+| Command      | Description                                         |
+| ------------ | --------------------------------------------------- |
+| `go build`   | Will compile the code and create an executable file |
+| `go run`     | Will compile and run the code                       |
+| `go fmt`     | Will format the code                                |
+| `go install` | Will compile and install the package                |
+| `go get`     | Downloads the package                               |
+| `go test`    | Will execute the tests                              |
+
+> Only main package on build produces an executable file, and building a package other than main gives no executable file. Basically package main is executable package.
+
 ## Variable Declaration in Go
 
 Below are the different ways to declare a variable in go
@@ -57,7 +76,19 @@ var i = 10
 i := 10
 ```
 
-**Note**: You can not use short hand syntax out of function. For declaring package level variable var keyword is must. Type can be left out if it can be inferred. In Go all declared variable have a value. Also a declared variable needs to be used, else it will give you an error on compile.
+**Note**: You can not use short hand syntax out of function. For declaring package level variable var keyword is must. Type can be left out if it can be inferred. In Go all declared variable have a value. Also a declared variable needs to be used, else it will give you an error on compile. For Example, below code will give you an error : `Non-declaration statement outside function body`
+
+```go
+package main
+
+import "fmt"
+
+pi := 3.14
+
+func main() {
+ fmt.Println(pi)
+}
+```
 
 ---
 
@@ -498,7 +529,9 @@ func main() {
 
 You might notice that name changes but cost doesn't that is because, for method `ChangeName` we used reference receiver i.e. `(c *car)` whereas for `ChangeCost` method we use value receiver i.e. `(c Car)`. So when you use `(c Car)` you're actually creating a copy and updating its value. But when you use `(c *car)` you are actually referencing the actual property and thus it gets updated correctly.
 
-In Conclusion use value receiver when you are not modifying the value of the struct and use reference receiver when you are modifying the value of the struct.
+**In Conclusion use value receiver when you are not modifying the value of the struct and use reference receiver when you are modifying the value of the struct**.
+
+> By Convention, usually the receiver parameter name is single or double letter as given in above example for Car we have used only `c` hence `c *Car`. `this` or `self` aren't defined/used in go. Go basically avoids any mentions of `this` or `self`, and using the same can be breaking convention.
 
 ---
 
@@ -947,6 +980,110 @@ But then how to know if the value is from a closed channel? for that we using `v
 - We use done channel pattern with select
 
 ---
+
+## Testing in Go
+
+- Testing in go is not like mocha, selenium, etc.
+- For creating a test you need to create a new file ending with `_test.go`
+- `go test` command will execute all the tests in given package
+- Basic testing function is like `func TestSomeFunction(t *testing.T)`
+
+---
+
+## Printing out an Object
+
+Below is the simple way of printing an object with all it properties and their respective values.
+
+```go
+fmt.Println("%+v", objectName)
+```
+
+---
+
+## Pointer in Go
+
+In below code, `*SomeObject` is a type description, which in below case is an pointer to `SomeObject`. Whereas `(*pointerToObject)` here `*` is an operator, representing value of the pointer its representing.
+
+```go
+func (pointerToObject *SomeObject) update(){
+	(*pointerToObject).Property = 9
+}
+```
+
+Above and below function does the same thing
+
+```go
+func (pointerToObject *SomeObject) update(){
+	pointerToObject.Property = 9
+}
+```
+
+| Note             |            |
+| ---------------- | ---------- |
+| Address to Value | `*address` |
+| Value to Address | `&value`   |
+
+Sample program for explaining pointers in go
+
+```go
+package main
+
+import "fmt"
+
+type SomeType struct {
+	Property int
+}
+
+func main() {
+	t := SomeType{Property: 42}
+	fmt.Printf("%+v\n", t)
+	// You can directly call the method on the struct even though it is not an pointer as given in method definition below
+	t.UpdateProperty(10)
+	fmt.Printf("%+v\n", t)
+	tptr := &t
+	// You can also call the method on the pointer to the struct as given in method definition below
+	tptr.UpdateProperty2(20)
+	fmt.Printf("%+v\n", t)
+	// As you can see both way works in go language, i.e you can call a method on the struct or pointer to the struct.
+	// Same holds true for the property update as given in method UpdateProperty2 where we are using (*t).
+	t.UpdateProperty2(30)
+	fmt.Printf("%+v\n", t)
+}
+
+func (t *SomeType) UpdateProperty(a int) {
+	t.Property = a
+}
+
+func (t *SomeType) UpdateProperty2(a int) {
+	(*t).Property = a
+}
+```
+
+When passing slice in the function there is a direct reference to that slice and not like in other cases where copies are created and updated. For example
+
+```go
+func UpdateSlice(slc []string) {
+	slc[0] = "Hola!"
+}
+
+mySlice := []string{"Hey","There"}
+UpdateSlice(mySlice)
+// this above function call will update the slice from [Hey There] to [Hola There]
+```
+
+Hence when you pass int, string, float or struct in any function in go, it creates a copy of that argument and then use them inside the function.
+
+> fmt.Println(\*&val) is similar to fmt.Println(val)
+
+| Value Types | Reference Types |
+| ----------- | --------------- |
+| int         | slices          |
+| float       | maps            |
+| string      | channels        |
+| bool        | pointers        |
+| structs     | functions       |
+
+For above `Refernce Types` you don't have to worry about pointers. But for `Value Types` you have to use pointers to change them in functions.
 
 ## Reference
 
