@@ -1,36 +1,37 @@
 # Go Lang
 
 - [Go Lang](#go-lang)
-	- [What is Go?](#what-is-go)
-	- [Go Commands](#go-commands)
-	- [Variable Declaration in Go](#variable-declaration-in-go)
-	- [Data Types in Go](#data-types-in-go)
-	- [Sub String in String](#sub-string-in-string)
-	- [Switch in Go](#switch-in-go)
-	- [Important Points on Go](#important-points-on-go)
-	- [Random Number in Go](#random-number-in-go)
-	- [`go get` Command](#go-get-command)
-	- [Arrays in Go](#arrays-in-go)
-	- [Slices in Go](#slices-in-go)
-	- [Map in Go](#map-in-go)
-	- [Struct in Go](#struct-in-go)
-	- [Struct Tags](#struct-tags)
-	- [Methods in Go](#methods-in-go)
-	- [Define Methods on Type](#define-methods-on-type)
-	- [Interfaces in Go](#interfaces-in-go)
-	- [Type Assertion Vs Conversion](#type-assertion-vs-conversion)
-	- [Type Switch](#type-switch)
-	- [Errors in Go](#errors-in-go)
-	- [CSP & Go Routines](#csp--go-routines)
-	- [Channels for Sending Data between Go Routines](#channels-for-sending-data-between-go-routines)
-	- [Buffer Channel](#buffer-channel)
-	- [Deadlock in Go Routine](#deadlock-in-go-routine)
-	- [Closing a channel](#closing-a-channel)
-	- [Select in Go](#select-in-go)
-	- [Testing in Go](#testing-in-go)
-	- [Printing out an Object](#printing-out-an-object)
-	- [Pointer in Go](#pointer-in-go)
-	- [Reference](#reference)
+  - [What is Go?](#what-is-go)
+  - [Go Commands](#go-commands)
+  - [Variable Declaration in Go](#variable-declaration-in-go)
+  - [Data Types in Go](#data-types-in-go)
+  - [Sub String in String](#sub-string-in-string)
+  - [Switch in Go](#switch-in-go)
+  - [Important Points on Go](#important-points-on-go)
+  - [Random Number in Go](#random-number-in-go)
+  - [`go get` Command](#go-get-command)
+  - [Arrays in Go](#arrays-in-go)
+  - [Slices in Go](#slices-in-go)
+  - [Map in Go](#map-in-go)
+  - [Struct in Go](#struct-in-go)
+  - [Struct Tags](#struct-tags)
+  - [Methods in Go](#methods-in-go)
+  - [Define Methods on Type](#define-methods-on-type)
+  - [Interfaces in Go](#interfaces-in-go)
+    - [Bestter example of Interfaces in Go](#bestter-example-of-interfaces-in-go)
+  - [Type Assertion Vs Conversion](#type-assertion-vs-conversion)
+  - [Type Switch](#type-switch)
+  - [Errors in Go](#errors-in-go)
+  - [CSP & Go Routines](#csp--go-routines)
+  - [Channels for Sending Data between Go Routines](#channels-for-sending-data-between-go-routines)
+  - [Buffer Channel](#buffer-channel)
+  - [Deadlock in Go Routine](#deadlock-in-go-routine)
+  - [Closing a channel](#closing-a-channel)
+  - [Select in Go](#select-in-go)
+  - [Testing in Go](#testing-in-go)
+  - [Printing out an Object](#printing-out-an-object)
+  - [Pointer in Go](#pointer-in-go)
+  - [Reference](#reference)
 
 ![Visitor](https://visitor-badge.glitch.me/badge?page_id=aasisodiya.go)
 
@@ -114,22 +115,22 @@ You can very quickly get a substring of a string in golang using `[]`. `str[a,b]
 ```go
 package main
 import (
-	"fmt"
+  "fmt"
 )
 func main() {
-	str := "Everything is Awesome"
-	str1 := str[0:10] // will print characters from 0 to 9 (and not 10) i.e. Everything
-	str2 := str[:10] // will also print characters from start to 9 (and not 10) i.e. Everything
-	str3 := str[14:21] // will print characters from 14 to 20 (and not 21) i.e. Awesome
-	// str3 := str[14:len(str)] // will also print characters from 14 to end i.e. Awesome
-	str4 := str[14:] // will also print characters from 14 to end i.e. Awesome
-	str5 := str[0:21] // will print the whole string i.e. Everything is Awesome
-	str6 := str[0:len(str)] // will also print the whole string i.e. Everything is Awesome
-	str7 := str[:] // will also print the whole string i.e. Everything is Awesome
-	str8 := str[11:13] // will print the characters from index 11 to 12 (not 13) i.e. is
-	fmt.Printf(`str = %s, str1 = %s, str2 = %s, str3 = %s, str4 = %s,
-	str5 = %s, str6 = %s, str7 = %s, str8 = %s, len(str) = %d`,
-	str, str1, str2, str3, str4, str5, str6, str7, str8, len(str))
+  str := "Everything is Awesome"
+  str1 := str[0:10] // will print characters from 0 to 9 (and not 10) i.e. Everything
+  str2 := str[:10] // will also print characters from start to 9 (and not 10) i.e. Everything
+  str3 := str[14:21] // will print characters from 14 to 20 (and not 21) i.e. Awesome
+  // str3 := str[14:len(str)] // will also print characters from 14 to end i.e. Awesome
+  str4 := str[14:] // will also print characters from 14 to end i.e. Awesome
+  str5 := str[0:21] // will print the whole string i.e. Everything is Awesome
+  str6 := str[0:len(str)] // will also print the whole string i.e. Everything is Awesome
+  str7 := str[:] // will also print the whole string i.e. Everything is Awesome
+  str8 := str[11:13] // will print the characters from index 11 to 12 (not 13) i.e. is
+  fmt.Printf(`str = %s, str1 = %s, str2 = %s, str3 = %s, str4 = %s,
+  str5 = %s, str6 = %s, str7 = %s, str8 = %s, len(str) = %d`,
+  str, str1, str2, str3, str4, str5, str6, str7, str8, len(str))
 }
 ```
 
@@ -261,14 +262,14 @@ For getting/generating a random number in go you can use `"math/rand"` package. 
 package main
 
 import (
-	"fmt"
-	"math/rand"
+  "fmt"
+  "math/rand"
 )
 
 func main() {
-	rand.Seed(1)
-	fmt.Println("Random Number", rand.Intn(10)) // 1
-	fmt.Println("Random Number", rand.Intn(10)) // 7
+  rand.Seed(1)
+  fmt.Println("Random Number", rand.Intn(10)) // 1
+  fmt.Println("Random Number", rand.Intn(10)) // 7
 }
 ```
 
@@ -331,20 +332,20 @@ Example of Slice is given below
 package main
 
 import (
-	"fmt"
+  "fmt"
 )
 
 func main() {
-	exampleSlice := make([]string, 0) // this will create an empty slice
+  exampleSlice := make([]string, 0) // this will create an empty slice
   // exampleSlice := []string{}
-	exampleSlice = append(exampleSlice, "Akash") // so when you append a string size become 1
-	fmt.Println(len(exampleSlice)) // 1
-	exampleSlice = append(exampleSlice, "Akash")
-	fmt.Println(len(exampleSlice)) // 2
-	exampleSlice2 := make([]string, 4) // but this will create a slice with size 4 with empty strings
-	exampleSlice2 = append(exampleSlice2, "Akash") // so when you append a string it get added to
+  exampleSlice = append(exampleSlice, "Akash") // so when you append a string size become 1
+  fmt.Println(len(exampleSlice)) // 1
+  exampleSlice = append(exampleSlice, "Akash")
+  fmt.Println(len(exampleSlice)) // 2
+  exampleSlice2 := make([]string, 4) // but this will create a slice with size 4 with empty strings
+  exampleSlice2 = append(exampleSlice2, "Akash") // so when you append a string it get added to
   // existing 4 elements and thus size become 5
-	fmt.Println(len(exampleSlice2)) // 5
+  fmt.Println(len(exampleSlice2)) // 5
 }
 ```
 
@@ -381,23 +382,23 @@ First of all Structs are not Objects!, as there is no inheritance in structs. Th
 package main
 
 import (
-	"fmt"
+  "fmt"
 )
 
 type Sample struct {
-	PublicProperty  string
-	privateProperty int
+  PublicProperty  string
+  privateProperty int
 }
 
 func main() {
-	s0 := Sample{}            // Init with default values
-	s1 := Sample{"Value1", 8} // For such initialization all fields must be specified
-	s2 := Sample{             // For such initialization, you don't need to specify every field
-		privateProperty: 90,
-	}
-	s2.PublicProperty = "Value"
-	s2.privateProperty = 900
-	fmt.Println(s0, s1, s2)
+  s0 := Sample{}            // Init with default values
+  s1 := Sample{"Value1", 8} // For such initialization all fields must be specified
+  s2 := Sample{             // For such initialization, you don't need to specify every field
+    privateProperty: 90,
+  }
+  s2.PublicProperty = "Value"
+  s2.privateProperty = 900
+  fmt.Println(s0, s1, s2)
   // { 0} {Value1 8} {Value 900}
 }
 
@@ -411,36 +412,36 @@ Example of embedded struct is given below
 package main
 
 import (
-	"fmt"
+  "fmt"
 )
 
 type SimpleStruct struct {
-	A string
-	B int
+  A string
+  B int
 }
 
 type AnotherStruct struct {
-	C string
-	D SimpleStruct
+  C string
+  D SimpleStruct
 }
 
 type EmbeddedStruct struct {
-	A string
-	SimpleStruct
+  A string
+  SimpleStruct
 }
 
 func main() {
-	s := SimpleStruct{A: "a string", B: 8}
-	as := AnotherStruct{C: "c string", D: s}
-	es := EmbeddedStruct{A: "em string", SimpleStruct: s}
-	fmt.Println(s, as, es)
-	fmt.Println(as.D.A)
-	fmt.Println(es.A)
-	fmt.Println(es.B) // Using embedded struct you can directly access the property of embedded struct
-	// But what about property A?? as it is similar to that of property in EmbeddedStruct
-	// For such scenario you can use the the struct name, example give below
-	fmt.Println(es.SimpleStruct.A)
-	fmt.Println(es.SimpleStruct.B)
+  s := SimpleStruct{A: "a string", B: 8}
+  as := AnotherStruct{C: "c string", D: s}
+  es := EmbeddedStruct{A: "em string", SimpleStruct: s}
+  fmt.Println(s, as, es)
+  fmt.Println(as.D.A)
+  fmt.Println(es.A)
+  fmt.Println(es.B) // Using embedded struct you can directly access the property of embedded struct
+  // But what about property A?? as it is similar to that of property in EmbeddedStruct
+  // For such scenario you can use the the struct name, example give below
+  fmt.Println(es.SimpleStruct.A)
+  fmt.Println(es.SimpleStruct.B)
 }
 ```
 
@@ -456,28 +457,28 @@ Go allows to put metadata on fields of struct, which is used for marshalling and
 package main
 
 import (
-	"encoding/json"
-	"fmt"
+  "encoding/json"
+  "fmt"
 )
 
 type Car struct {
-	Name string `json:"name"`
-	Cost int    `json:"cost"`
+  Name string `json:"name"`
+  Cost int    `json:"cost"`
 }
 
 func main() {
-	car1 := `{
-		"name":"Audi R8",
-		"cost":150000
-	}`
-	var audi Car
-	json.Unmarshal([]byte(car1), &audi)
-	fmt.Println(audi)
-	audiCar, err := json.Marshal(audi)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(string(audiCar))
+  car1 := `{
+    "name":"Audi R8",
+    "cost":150000
+  }`
+  var audi Car
+  json.Unmarshal([]byte(car1), &audi)
+  fmt.Println(audi)
+  audiCar, err := json.Marshal(audi)
+  if err != nil {
+    fmt.Println(err)
+  }
+  fmt.Println(string(audiCar))
 }
 ```
 
@@ -493,35 +494,35 @@ Method declaration has a method receiver declared between keyword `func` and the
 package main
 
 import (
-	"fmt"
+  "fmt"
 )
 
 type Car struct {
-	Name string `json:"name"`
-	Cost int    `json:"cost"`
+  Name string `json:"name"`
+  Cost int    `json:"cost"`
 }
 
 func (c *Car) DisplayData() {
-	fmt.Println(fmt.Sprintf("%s has cost of %d dollars", c.Name, c.Cost))
+  fmt.Println(fmt.Sprintf("%s has cost of %d dollars", c.Name, c.Cost))
 }
 
 func (c *Car) ChangeName(newName string) {
-	c.Name = newName
-	fmt.Println("Name Updated to ", newName)
+  c.Name = newName
+  fmt.Println("Name Updated to ", newName)
 }
 
 func (c Car) ChangeCost(newCost int) {
-	c.Cost = newCost
-	fmt.Println("Cost Updated to ", newCost)
+  c.Cost = newCost
+  fmt.Println("Cost Updated to ", newCost)
 }
 
 func main() {
-	audi := Car{"Audi R8", 150000}
-	audi.DisplayData() // Audi R8 has cost of 150000 dollars
-	audi.ChangeName("Audi R8 V10") // Name Updated to  Audi R8 V10
-	audi.DisplayData() // Audi R8 V10 has cost of 150000 dollars
-	audi.ChangeCost(200000) // Cost Updated to  200000
-	audi.DisplayData() // Audi R8 V10 has cost of 150000 dollars
+  audi := Car{"Audi R8", 150000}
+  audi.DisplayData() // Audi R8 has cost of 150000 dollars
+  audi.ChangeName("Audi R8 V10") // Name Updated to  Audi R8 V10
+  audi.DisplayData() // Audi R8 V10 has cost of 150000 dollars
+  audi.ChangeCost(200000) // Cost Updated to  200000
+  audi.DisplayData() // Audi R8 V10 has cost of 150000 dollars
 }
 ```
 
@@ -543,19 +544,19 @@ In go you can define methods on type. Example of the same is given below
 package main
 
 import (
-	"fmt"
+  "fmt"
 )
 
 type myInt int
 
 func (mi myInt) isEven() bool {
-	return mi%2 == 0
+  return mi%2 == 0
 }
 
 func main() {
-	m := myInt(10)
-	fmt.Println(m)
-	fmt.Println(m.isEven())
+  m := myInt(10)
+  fmt.Println(m)
+  fmt.Println(m.isEven())
 }
 ```
 
@@ -571,43 +572,111 @@ A Type that lists a set of methods but provides no implementation. Sample code i
 package main
 
 import (
-	"fmt"
+  "fmt"
 )
 
 type Sample interface {
-	Test(int) bool
+  Test(int) bool
 }
 
 type A struct {
-	num1 int
-	num2 int
+  num1 int
+  num2 int
 }
 
 type B struct {
-	num1 int
+  num1 int
 }
 
 func (b B) Test(i int) bool {
-	return b.num1 > i
+  return b.num1 > i
 }
 
 func (a A) Test(i int) bool {
-	return a.num1 > i && a.num2 < i
+  return a.num1 > i && a.num2 < i
 }
 
 func main() {
-	samples := []Sample{
-		A{10, 2},
-		B{7},
-	}
-	for _, sample := range samples {
-		fmt.Println(sample.Test(5))
-		fmt.Println(sample.Test(8))
-	}
+  samples := []Sample{
+    A{10, 2},
+    B{7},
+  }
+  for _, sample := range samples {
+    fmt.Println(sample.Test(5))
+    fmt.Println(sample.Test(8))
+  }
 }
 ```
 
 > [Click here](https://play.golang.org/p/6i6O4krk2Q3) to edit/run the code
+
+### Bestter example of Interfaces in Go
+
+Interfaces in go helps you reuse the code that is common for different type of variables.
+
+Now lets take an example to demonstrate better use of interface. In below example you can see that Print Area method defined on both Rectangle and Square struct are the similar logic. Hence the interface solved our issue by allowing us to reuse the code. `PrintArea(a Area)` is an replacement for both of them.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+  // Declaring the AreaCalculator to validate that the code fulfills the interface contract.
+  var r, s AreaCalculator
+  r = Rectangle{
+    Width:  10,
+    Height: 20,
+  }
+  s = Square{
+    Side: 20,
+  }
+  PrintArea(r)
+  PrintArea(s)
+}
+
+func (r Rectangle) GetArea() int {
+  return r.Height * r.Width
+}
+func (s Square) GetArea() int {
+  return (s.Side * s.Side)
+}
+
+// Below methods are not needed
+// func (r *Rectangle) PrintArea() {
+//   fmt.Println(r.Area)
+// }
+// func (s Square) PrintArea() {
+//   fmt.Println(s.Area)
+// }
+
+type Rectangle struct {
+  Height int
+  Width  int
+  Area   int
+}
+
+type Square struct {
+  Side int
+  Area int
+}
+
+type AreaCalculator interface {
+  GetArea() int
+}
+
+func PrintArea(a AreaCalculator) {
+  fmt.Println(a.GetArea())
+}
+```
+
+> [Click here](https://go.dev/play/p/vtSzNQDsWuW) to edit/run the code
+
+- Interface helps us to make sure that a particular type qualifies for an interface when it implements all the methods mentioned in that interface.
+- We cannot create a values out of interface. As its not a concrete type like int, string, etc.
+- Interfaces are not generic type
+- Interfaces are implicit i.e we don't have to link any type with interfaces explicitly
+- Interfaces are a contract to help us manage types
 
 ---
 
@@ -621,17 +690,17 @@ Empty Interface in Go, i.e. with no methods at all. Any types could match this.
 package main
 
 import (
-	"fmt"
+  "fmt"
 )
 
 func main() {
-	var i interface{}
-	i = "string"
-	j := i.(string)
-	fmt.Println(i, j)
-	k, ok := i.(int)
-	fmt.Println(k, ok)
-	// m := i.(int) this will panic as its wrong assertion
+  var i interface{}
+  i = "string"
+  j := i.(string)
+  fmt.Println(i, j)
+  k, ok := i.(int)
+  fmt.Println(k, ok)
+  // m := i.(int) this will panic as its wrong assertion
 }
 ```
 
@@ -649,28 +718,28 @@ When doing type assertion you need to be sure that type is correct else code wil
 package main
 
 import (
-	"fmt"
+  "fmt"
 )
 
 func typeCheck(i interface{}) {
-	switch i := i.(type) {
-	case int:
-		fmt.Println("Its Integer:", i)
-	case string:
-		fmt.Println("Its String:", i)
-	default:
-		fmt.Println("Type Unknown:", i)
-	}
+  switch i := i.(type) {
+  case int:
+    fmt.Println("Its Integer:", i)
+  case string:
+    fmt.Println("Its String:", i)
+  default:
+    fmt.Println("Type Unknown:", i)
+  }
 }
 
 func main() {
-	var i interface{}
-	i = "string"
-	typeCheck(i) // Its String: string
-	i = 1000
-	typeCheck(i) // Its Integer: 1000
-	i = 10.0
-	typeCheck(i) // Type Unknown: 10
+  var i interface{}
+  i = "string"
+  typeCheck(i) // Its String: string
+  i = 1000
+  typeCheck(i) // Its Integer: 1000
+  i = 10.0
+  typeCheck(i) // Type Unknown: 10
 }
 ```
 
@@ -713,15 +782,15 @@ Sample Go Routine Code is given below
 package main
 
 import (
-	"fmt"
+  "fmt"
 )
 
 func test() {
-	fmt.Println("Go Routine executed me")
+  fmt.Println("Go Routine executed me")
 }
 
 func main() {
-	go test()
+  go test()
 }
 ```
 
@@ -736,28 +805,28 @@ When you run the above code you will notice that you don't get any output. That 
 package main
 
 import (
-	"fmt"
-	"sync"
+  "fmt"
+  "sync"
 )
 
 func test() {
-	fmt.Println("Go Routine executed me")
+  fmt.Println("Go Routine executed me")
 }
 
 func main() {
-	var wg sync.WaitGroup
-	// We don't have to initialize it, just declare it
-	wg.Add(1)
-	// This tells the wait group that we have added 1 go routine to run
-	// Now we launch a closure as a go routine
-	go func() {
-		test()
-		// Now we call Done method to notify that go routine has completed
-		wg.Done()
-	}()
-	// Now here at last we call Wait on wait group
-	wg.Wait()
-	// Wait helps us to make sure that go routine finish execution
+  var wg sync.WaitGroup
+  // We don't have to initialize it, just declare it
+  wg.Add(1)
+  // This tells the wait group that we have added 1 go routine to run
+  // Now we launch a closure as a go routine
+  go func() {
+    test()
+    // Now we call Done method to notify that go routine has completed
+    wg.Done()
+  }()
+  // Now here at last we call Wait on wait group
+  wg.Wait()
+  // Wait helps us to make sure that go routine finish execution
 }
 ```
 
@@ -771,25 +840,25 @@ Now lets have a look at go routine with data, First code uses direct reference t
 package main
 
 import (
-	"fmt"
-	"sync"
+  "fmt"
+  "sync"
 )
 
 func test(i int) {
-	fmt.Println("Go Routine executed me: ", i)
+  fmt.Println("Go Routine executed me: ", i)
 }
 
 func main() {
-	var wg sync.WaitGroup
-	// direct reference (You won't get the output you expect, because all go routine share the same variable)
-	for i := 0; i < 100; i++ {
-		wg.Add(1)
-		go func() {
-			test(i)
-			wg.Done()
-		}()
-	}
-	wg.Wait()
+  var wg sync.WaitGroup
+  // direct reference (You won't get the output you expect, because all go routine share the same variable)
+  for i := 0; i < 100; i++ {
+    wg.Add(1)
+    go func() {
+      test(i)
+      wg.Done()
+    }()
+  }
+  wg.Wait()
 }
 ```
 
@@ -801,25 +870,25 @@ If you want to pass different parameter to each go routine, You should pass i as
 package main
 
 import (
-	"fmt"
-	"sync"
+  "fmt"
+  "sync"
 )
 
 func test(i int) {
-	fmt.Println("Go Routine executed me: ", i)
+  fmt.Println("Go Routine executed me: ", i)
 }
 
 func main() {
-	var wg sync.WaitGroup
-	// direct reference (You won't get the output you expect, because all go routine share the same variable)
-	for i := 0; i < 10; i++ {
-		wg.Add(1)
-		go func(x int) {
-			test(x)
-			wg.Done()
-		}(i)
-	}
-	wg.Wait()
+  var wg sync.WaitGroup
+  // direct reference (You won't get the output you expect, because all go routine share the same variable)
+  for i := 0; i < 10; i++ {
+    wg.Add(1)
+    go func(x int) {
+      test(x)
+      wg.Done()
+    }(i)
+  }
+  wg.Wait()
 }
 ```
 
@@ -840,22 +909,22 @@ Sample code for channel is given below
 package main
 
 import (
-	"fmt"
+  "fmt"
 )
 
 func main() {
-	in := make(chan string)
-	defer close(in)
-	out := make(chan string)
-	defer close(out)
+  in := make(chan string)
+  defer close(in)
+  out := make(chan string)
+  defer close(out)
 
-	go func() {
-		name := <-in                         // Reading a value from channel
-		out <- fmt.Sprintf("Hello, " + name) // Writing a value to a channel
-	}()
-	in <- "Akash"    // Writing a value to a channel
-	message := <-out // Reading a value from a channel
-	fmt.Println(message)
+  go func() {
+    name := <-in                         // Reading a value from channel
+    out <- fmt.Sprintf("Hello, " + name) // Writing a value to a channel
+  }()
+  in <- "Akash"    // Writing a value to a channel
+  message := <-out // Reading a value from a channel
+  fmt.Println(message)
 }
 ```
 
@@ -873,23 +942,23 @@ func main() {
 package main
 
 import (
-	"fmt"
+  "fmt"
 )
 
 func main() {
-	out := make(chan int, 10)
-	defer close(out)
-	for i := 0; i < 10; i++ {
-		go func(localI int) {
-			out <- localI
-		}(i)
-	}
-	var result []int
-	for i := 0; i < 10; i++ {
-		val := <-out
-		result = append(result, val)
-	}
-	fmt.Println(result)
+  out := make(chan int, 10)
+  defer close(out)
+  for i := 0; i < 10; i++ {
+    go func(localI int) {
+      out <- localI
+    }(i)
+  }
+  var result []int
+  for i := 0; i < 10; i++ {
+    val := <-out
+    result = append(result, val)
+  }
+  fmt.Println(result)
 }
 ```
 
@@ -905,25 +974,25 @@ Sample code for dead lock in go routine is given below
 package main
 
 import (
-	"fmt"
+  "fmt"
 )
 
 func main() {
-	in := make(chan int)
-	defer close(in)
-	out := make(chan int)
-	defer close(out)
-	go func() {
-		for {
-			i := <-in
-			out <- i * 2
-		}
-	}()
-	in <- 1
-	in <- 2
-	o1 := <-out
-	o2 := <-out
-	fmt.Println(o1, o2)
+  in := make(chan int)
+  defer close(in)
+  out := make(chan int)
+  defer close(out)
+  go func() {
+    for {
+      i := <-in
+      out <- i * 2
+    }
+  }()
+  in <- 1
+  in <- 2
+  o1 := <-out
+  o2 := <-out
+  fmt.Println(o1, o2)
 }
 ```
 
@@ -936,13 +1005,13 @@ fatal error: all goroutines are asleep - deadlock!
 
 goroutine 1 [chan send]:
 main.main()
-	/tmp/sandbox2823182645/prog.go:19 +0x136
+  /tmp/sandbox2823182645/prog.go:19 +0x136
 
 goroutine 6 [chan send]:
 main.main.func1()
-	/tmp/sandbox2823182645/prog.go:15 +0x55
+  /tmp/sandbox2823182645/prog.go:15 +0x55
 created by main.main
-	/tmp/sandbox2823182645/prog.go:12 +0x10f
+  /tmp/sandbox2823182645/prog.go:12 +0x10f
 
 Program exited: status 2.
 ```
@@ -1006,7 +1075,7 @@ In below code, `*SomeObject` is a type description, which in below case is an po
 
 ```go
 func (pointerToObject *SomeObject) update(){
-	(*pointerToObject).Property = 9
+  (*pointerToObject).Property = 9
 }
 ```
 
@@ -1014,7 +1083,7 @@ Above and below function does the same thing
 
 ```go
 func (pointerToObject *SomeObject) update(){
-	pointerToObject.Property = 9
+  pointerToObject.Property = 9
 }
 ```
 
@@ -1031,31 +1100,31 @@ package main
 import "fmt"
 
 type SomeType struct {
-	Property int
+  Property int
 }
 
 func main() {
-	t := SomeType{Property: 42}
-	fmt.Printf("%+v\n", t)
-	// You can directly call the method on the struct even though it is not an pointer as given in method definition below
-	t.UpdateProperty(10)
-	fmt.Printf("%+v\n", t)
-	tptr := &t
-	// You can also call the method on the pointer to the struct as given in method definition below
-	tptr.UpdateProperty2(20)
-	fmt.Printf("%+v\n", t)
-	// As you can see both way works in go language, i.e you can call a method on the struct or pointer to the struct.
-	// Same holds true for the property update as given in method UpdateProperty2 where we are using (*t).
-	t.UpdateProperty2(30)
-	fmt.Printf("%+v\n", t)
+  t := SomeType{Property: 42}
+  fmt.Printf("%+v\n", t)
+  // You can directly call the method on the struct even though it is not an pointer as given in method definition below
+  t.UpdateProperty(10)
+  fmt.Printf("%+v\n", t)
+  tptr := &t
+  // You can also call the method on the pointer to the struct as given in method definition below
+  tptr.UpdateProperty2(20)
+  fmt.Printf("%+v\n", t)
+  // As you can see both way works in go language, i.e you can call a method on the struct or pointer to the struct.
+  // Same holds true for the property update as given in method UpdateProperty2 where we are using (*t).
+  t.UpdateProperty2(30)
+  fmt.Printf("%+v\n", t)
 }
 
 func (t *SomeType) UpdateProperty(a int) {
-	t.Property = a
+  t.Property = a
 }
 
 func (t *SomeType) UpdateProperty2(a int) {
-	(*t).Property = a
+  (*t).Property = a
 }
 ```
 
@@ -1063,7 +1132,7 @@ When passing slice in the function there is a direct reference to that slice and
 
 ```go
 func UpdateSlice(slc []string) {
-	slc[0] = "Hola!"
+  slc[0] = "Hola!"
 }
 
 mySlice := []string{"Hey","There"}
