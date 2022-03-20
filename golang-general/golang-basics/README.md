@@ -27,6 +27,7 @@
   - [Buffer Channel](#buffer-channel)
   - [Deadlock in Go Routine](#deadlock-in-go-routine)
   - [Closing a channel](#closing-a-channel)
+  - [Using Channel with for loop](#using-channel-with-for-loop)
   - [Select in Go](#select-in-go)
   - [Testing in Go](#testing-in-go)
   - [Printing out an Object](#printing-out-an-object)
@@ -765,7 +766,7 @@ func main() {
 ## CSP & Go Routines
 
 - Usually concurrency in most languages are defined using threads as unit of execution. Each thread is mapped to os-level thread. They share data data by acquiring locks on shared pieces of data. Many languages have concurrency support in their libraries.
-- Concurrency in Go is different and its concurrency model is based on CSP (Communicating Sequential Process) and is built into the language.
+- Concurrency in Go is different and its concurrency model is based on **CSP (Communicating Sequential Process)** and is built into the language.
 - Go Routines are lightweight processes managed by the Go Runtime
 - Go Routines are not threads, threads are managed by OS while the go routines are managed by go runtime scheduler.
 - Go Runtime Schedules go routines across threads automatically
@@ -800,6 +801,7 @@ When you run the above code you will notice that you don't get any output. That 
 
 - By Pausing using `time.Sleep(1*time.Second)`, **This is not recommended in real programs and should be avoided**
 - By using Wait Group, for which we use `"sync"` package
+- Try to pass shared variables in argument to the go routine function in order to avoid issues related to referencing.
 
 ```go
 package main
@@ -1040,6 +1042,23 @@ But then how to know if the value is from a closed channel? for that we using `v
 | close     | Works                            | Works                     | PANIC        | PANIC                                                               |
 
 ---
+
+## Using Channel with for loop
+
+```go
+for _, v := range myChannel{
+  // Logic
+}
+```
+
+Above code is similar to below code
+
+```go
+for {
+  rec := <-myChannel
+  // Logic
+}
+```
 
 ## Select in Go
 
