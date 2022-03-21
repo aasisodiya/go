@@ -2,9 +2,11 @@
 
 - [Go Lang](#go-lang)
   - [What is Go?](#what-is-go)
+  - [Why Go?](#why-go)
   - [Go Commands](#go-commands)
   - [Variable Declaration in Go](#variable-declaration-in-go)
   - [Data Types in Go](#data-types-in-go)
+  - [Naming Convention in Go](#naming-convention-in-go)
   - [Sub String in String](#sub-string-in-string)
   - [Switch in Go](#switch-in-go)
   - [Important Points on Go](#important-points-on-go)
@@ -18,7 +20,7 @@
   - [Methods in Go](#methods-in-go)
   - [Define Methods on Type](#define-methods-on-type)
   - [Interfaces in Go](#interfaces-in-go)
-    - [Bestter example of Interfaces in Go](#bestter-example-of-interfaces-in-go)
+    - [Better example of Interfaces in Go](#better-example-of-interfaces-in-go)
   - [Type Assertion Vs Conversion](#type-assertion-vs-conversion)
   - [Type Switch](#type-switch)
   - [Errors in Go](#errors-in-go)
@@ -41,6 +43,7 @@
 - Go is an open-source programming language used to build simple, reliable and efficient software.
 - Go was created by 3 People - Ken Thompson, Rob Pike and Robert Griesemer.
 - Go is Simple
+- Go is Compiled Language, its not interpreted language
 - Go is Strongly Typed (Variable has a type, and once declared it can't be assigned any other value type)
 - Go is a procedural language with object oriented features.
 - Go includes modern standard library
@@ -49,6 +52,22 @@
 - Go has garbage collection and is memory efficient. A well written go code can use upto 1/2 of that resource used by a Java Program.
 - Go takes advantage of multiple cores. It has built-in concurrency.
 - Well Known Projects That are written using Go - Hugo (Static Site Generator), Caddy (Web Server), Prometheus (Monitoring system & time series database), Docker, Kubernetes.
+
+---
+
+## Why Go?
+
+- Go is compiled language hence its much faster compared to interpreted language
+- No Runtime dependency, hence version dependency is eliminated
+- Go compiles to a single binary file
+- Strongly Typed
+- Built-in Concurrency
+- Cross Platform
+- Easier than any other language
+
+---
+
+> Click on this [link to download Go](https://go.dev/dl/)
 
 ---
 
@@ -78,14 +97,15 @@ var i = 10
 i := 10
 ```
 
-**Note**: You can not use short hand syntax out of function. For declaring package level variable var keyword is must. Type can be left out if it can be inferred. In Go all declared variable have a value. Also a declared variable needs to be used, else it will give you an error on compile. For Example, below code will give you an error : `Non-declaration statement outside function body`
+**Note**: You can not use short hand syntax out of function. Type can be left out if it can be inferred. In Go all declared variable have a value. Also a declared variable *(inside a function)* needs to be used, else it will give you an error on compile. For declaring package level variable `var` keyword is must. For Example, below code will give you an error : `Non-declaration statement outside function body`
 
 ```go
 package main
 
 import "fmt"
 
-pi := 3.14
+pi := 3.14 // wrong
+// var pi = 3.14 or var pi float64 = 3.14
 
 func main() {
  fmt.Println(pi)
@@ -109,9 +129,16 @@ Following are list of types in go
 
 ---
 
+## Naming Convention in Go
+
+- Anything (Function/Method/Variable) written or defined with camelCase is set to private access
+- Anything (Function/Method/Variable) written or defined with TitleCase is set to public access
+
+---
+
 ## Sub String in String
 
-You can very quickly get a substring of a string in golang using `[]`. `str[a,b]` where a is your starting index (included) and b is the ending index (excluded). Below code demonstrate the same.
+You can very quickly get a substring of a string in golang using `[]`. `str[a,b]` where a is your starting index (included) and b is the ending index (excluded). Below code demonstrate the same. And for a valid case `a <= b` i.e a needs to be less than equal to b.
 
 ```go
 package main
@@ -356,7 +383,7 @@ func main() {
 
 ## Map in Go
 
-A map is a data type that associates a value of one data type to a value of another data type. You can create a map using `make`
+A map is a data type that associates a value of one data type to a value of another data type. You can create a map using `make`. You should not declare map as `var someMap map[string]int`. Map definition is `map[indexType]valueType`
 
 ```go
 m := make(map[string]int)
@@ -489,7 +516,7 @@ func main() {
 
 ## Methods in Go
 
-Method declaration has a method receiver declared between keyword `func` and the name of the method. Method receiver looks like parameter declaration.
+Method declaration has a method receiver declared between keyword `func` and the name of the method. Method receiver looks like parameter declaration. For example `func (s *Sample) SomeMethod()` in here `(s *Sample)` is the receiver. Most receiver in the go code are of pointer types, and it is referred as best practices in go documentation.
 
 ```go
 package main
@@ -611,7 +638,7 @@ func main() {
 
 > [Click here](https://play.golang.org/p/6i6O4krk2Q3) to edit/run the code
 
-### Bestter example of Interfaces in Go
+### Better example of Interfaces in Go
 
 Interfaces in go helps you reuse the code that is common for different type of variables.
 
@@ -678,6 +705,7 @@ func PrintArea(a AreaCalculator) {
 - Interfaces are not generic type
 - Interfaces are implicit i.e we don't have to link any type with interfaces explicitly
 - Interfaces are a contract to help us manage types
+- In order for a struct to be used with the interface, it must validate the contract i.e the struct should implement all the methods mentioned in the interface.
 
 ---
 
