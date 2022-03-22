@@ -11,7 +11,6 @@
   - [Switch in Go](#switch-in-go)
   - [Important Points on Go](#important-points-on-go)
   - [Random Number in Go](#random-number-in-go)
-  - [`go get` Command](#go-get-command)
   - [Arrays in Go](#arrays-in-go)
   - [Slices in Go](#slices-in-go)
   - [Map in Go](#map-in-go)
@@ -73,16 +72,19 @@
 
 ## Go Commands
 
-| Command      | Description                                         |
-| ------------ | --------------------------------------------------- |
-| `go build`   | Will compile the code and create an executable file |
-| `go run`     | Will compile and run the code                       |
-| `go fmt`     | Will format the code                                |
-| `go install` | Will compile and install the package                |
-| `go get`     | Downloads the package                               |
-| `go test`    | Will execute the tests                              |
+| Command       | Description                                                                              |
+| ------------- | ---------------------------------------------------------------------------------------- |
+| `go build`    | Will compile the code and create an executable file                                      |
+| `go run`      | Will compile and run the code                                                            |
+| `go fmt`      | Will format the code                                                                     |
+| `go install`  | Will compile and install the package                                                     |
+| `go get`      | command to import any external public package. Example `go get github.com/aasisodiya/go` |
+| `go test`     | Will execute the tests                                                                   |
+| `go mod init` | Will initialize a module. Example `go mod init github.com/aasisodiya/goprgm`             |
 
 > Only main package on build produces an executable file, and building a package other than main gives no executable file. Basically package main is executable package.
+
+> List of all awesome packages in go [Click Here](https://github.com/avelino/awesome-go)
 
 ## Variable Declaration in Go
 
@@ -97,7 +99,7 @@ var i = 10
 i := 10
 ```
 
-**Note**: You can not use short hand syntax out of function. Type can be left out if it can be inferred. In Go all declared variable have a value. Also a declared variable *(inside a function)* needs to be used, else it will give you an error on compile. For declaring package level variable `var` keyword is must. For Example, below code will give you an error : `Non-declaration statement outside function body`
+**Note**: You can not use short hand syntax out of function. Type can be left out if it can be inferred. In Go all declared variable have a value. Also a declared variable _(inside a function)_ needs to be used, else it will give you an error on compile. For declaring package level variable `var` keyword is must. For Example, below code will give you an error : `Non-declaration statement outside function body`
 
 ```go
 package main
@@ -302,14 +304,6 @@ func main() {
 ```
 
 > [Click Here](https://play.golang.org/p/xfBMX9_3kON) to edit/run the code
-
----
-
-## `go get` Command
-
-You can use `go get` command to import any external public package. Example `go get github.com/aasisodiya/go`
-
-> Here is the list of all awesome packages in go [Click Here](https://github.com/avelino/awesome-go)
 
 ---
 
@@ -932,6 +926,7 @@ func main() {
 - Multiple Go Routines can write to a single channel and Multiple Go Routines can read from a single channel
 - Data on channel is typed. ex. `make(chan string)` is used to create a channel of typed string
 - By Default channel reads and writes are synchronous. i.e. when a go routines writes to a channel it pauses until another go routines read from that channel and vice versa i.e. a go routine pauses when it read from channel and resume only when there is data available to read.
+- Always close / defer close your channels, by using `defer close(channelName)`
 
 Sample code for channel is given below
 
