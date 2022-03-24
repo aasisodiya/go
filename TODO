@@ -33,6 +33,13 @@ go install does not work at all with relative import paths.
 
 It is documented at https://golang.org/cmd/go/#hdr-Relative_import_paths
 
+☐ https://golang.org/doc/articles/wiki/
+☐ https://gobyexample.com/http-servers
+☐ https://tutorialedge.net/golang/creating-simple-web-server-with-golang/
+☐ https://tour.golang.org/basics/11
+☐ https://pkg.go.dev/fmt
+☐ https://golang.github.io/dep/ - version dependency management
+☐ https://github.com/kardianos/service - 
 
 - go mod init package-name
 - go mod tidy
