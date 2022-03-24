@@ -76,11 +76,15 @@
 | ------------- | ---------------------------------------------------------------------------------------- |
 | `go build`    | Will compile the code and create an executable file                                      |
 | `go run`      | Will compile and run the code                                                            |
+| `go run .`    | Will compile and run the code for multiple\* go files on windows                         |
+| `go run *.go` | Will compile and run the code for multiple\* go files on macos                           |
 | `go fmt`      | Will format the code                                                                     |
 | `go install`  | Will compile and install the package                                                     |
 | `go get`      | command to import any external public package. Example `go get github.com/aasisodiya/go` |
 | `go test`     | Will execute the tests                                                                   |
 | `go mod init` | Will initialize a module. Example `go mod init github.com/aasisodiya/goprgm`             |
+
+`* here multiple go files refer to multiple package main files in same folder, ex main.go, handler.go are in same folder and have same package main`
 
 > Only main package on build produces an executable file, and building a package other than main gives no executable file. Basically package main is executable package.
 
@@ -377,7 +381,7 @@ func main() {
 
 ## Map in Go
 
-A map is a data type that associates a value of one data type to a value of another data type. You can create a map using `make`. You should not declare map as `var someMap map[string]int`. Map definition is `map[indexType]valueType`
+A map is a data type that associates a value of one data type to a value of another data type. You can create a map using `make`. You should avoid declareing map as `var someMap map[string]int`. Map definition is `map[indexType]valueType`.
 
 ```go
 m := make(map[string]int)
@@ -390,9 +394,15 @@ m := map[string]int{
 }
 ```
 
-Order of iteration in map is completely random, you can not rely on map for its value to be in a same order.
+- Order of iteration in map is completely random, you can not rely on map for its value to be in a same order.
+- To add a value to map you can simply do `m["d"]=4` and to Remove a value from map using `delete` i.e `delete(m, "b")`
 
-To add a value to map you can simply do `m["d"]=4` and to Remove a value from map using `delete` i.e `delete(m, "b")`
+| `sampleMap := map[int]int{}`          | `sampleMap := make(map[int]int)`                                     |
+| ------------------------------------- | -------------------------------------------------------------------- |
+| Can be used to create a non empty map | Creates an empty map                                                 |
+| We cannot specify the capacity here   | We can specify capacity, which can help to reduce future allocations |
+
+> Above data is taken from [link](https://stackoverflow.com/questions/16959992/creating-map-with-without-make)
 
 ---
 
@@ -412,6 +422,10 @@ type Sample struct {
   privateProperty int
 }
 
+type StructWithFunc struct {
+  SomeFunction    func(int) string
+}
+
 func main() {
   s0 := Sample{}            // Init with default values
   s1 := Sample{"Value1", 8} // For such initialization all fields must be specified
@@ -422,11 +436,20 @@ func main() {
   s2.privateProperty = 900
   fmt.Println(s0, s1, s2)
   // { 0} {Value1 8} {Value 900}
+  sf := StructWithFunc{test}
+  sf.SomeFunction(2)
+}
+
+func test(i int) string {
+  fmt.Println("Test")
+  return "ok"
 }
 
 ```
 
-> [Click Here](https://play.golang.org/p/KMbOfl8lS6L) to run above code
+> [Click Here](https://go.dev/play/p/wYC-3_7mU0u) to run above code
+
+> You can also have function inside a struct
 
 Example of embedded struct is given below
 
@@ -770,7 +793,7 @@ func main() {
 
 ---
 
-> `type testFunc func(int) bool` is also a valid code
+> `type testFunc func(int) bool` is also a valid code ([ref](https://stackoverflow.com/questions/9398739/working-with-function-types-in-go)) this simply says that testFunc represents type `func(int) bool`. Let say for example you use `type myInt int` will create a new type `myInt` which directly represents `int`. click here for better example - [Define Methods on Type](#define-methods-on-type)
 > Interface is only nil if there is no underlying value assigned to it
 
 ---
