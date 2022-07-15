@@ -1,5 +1,7 @@
 # Using Parameter Store with Go Lang
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-aws-operations.aws-parameter-store&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 ## Create a Parameter in Parameter Store
 
 > Open AWS Parameter Store: [Link](https://us-west-2.console.aws.amazon.com/systems-manager/parameters?region=us-west-2)

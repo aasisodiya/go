@@ -1,5 +1,7 @@
 # AWS S3 Operations in Go Lang
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-aws-operations.aws-s3&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 Refer below request structure for creating your lambda code with api gateway
 
 ## APIGatewayProxyRequest Struct

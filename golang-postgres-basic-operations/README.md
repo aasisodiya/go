@@ -1,5 +1,7 @@
 # Using Postgres with Go Lang
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-postgres-basic-operations&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 Most part of using Postgres with Go Lang is similar with using MySQL with Go Lang
 
 ## Aurora Postgres Connection

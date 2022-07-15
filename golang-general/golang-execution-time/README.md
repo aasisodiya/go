@@ -1,5 +1,7 @@
 # Execution Time in Go Lang
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-general.execution-time&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 - [Execution Time in Go Lang](#execution-time-in-go-lang)
   - [Simple Code Logic for Execution Time](#simple-code-logic-for-execution-time)
   - [Measuring Function Execution Time](#measuring-function-execution-time)

@@ -1,6 +1,8 @@
 # AWS Operations in Go Lang
 
-Refer to Documentation of golang-aws-lambda folder for lambda deployment with apigw
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-aws-operations&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
+Refer to Documentation of golang-aws-lambda folder for lambda deployment with APIGW
 
 ## APIGatewayProxyRequest Struct
 

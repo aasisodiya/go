@@ -1,5 +1,7 @@
 # Using SES with Golang
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-email-service.ses&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 ## Getting Started
 
 What I have done here is, compiled some easy to use functions for SES that will perform required operations

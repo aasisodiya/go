@@ -1,5 +1,7 @@
 # Simple Go Lang Server
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-simple-server&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 - [Simple Go Lang Server](#simple-go-lang-server)
   - [Simple Web Server in Go](#simple-web-server-in-go)
   - [Powershell Command to Test](#powershell-command-to-test)
