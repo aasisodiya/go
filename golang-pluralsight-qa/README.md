@@ -1,5 +1,7 @@
 # Pluralsight Go Quiz
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-pluralsight-qna&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 While Exploring Pluralsight I encountered some great set of Go Lang Questions. Please do checkout [Pluralsight](https://www.pluralsight.com/) they have got some great features other than tutorials.
 
 ## Quiz

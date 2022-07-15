@@ -1,5 +1,7 @@
 # General
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-general&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 - [General](#general)
   - [`os.Exit()` Notes](#osexit-notes)
   - [Links](#links)

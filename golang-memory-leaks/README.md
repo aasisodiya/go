@@ -1,5 +1,7 @@
 # Memory Leaks in Go Lang
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-memory-leaks&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 ## Memory Leaks
 
 Memory Leaks happens when memory is not released even after it is no longer needed by a program. In most cases memory consumption by a program keeps on growing and then crashes the program, thus impacting the performance. **WARNING!!!!!! If you run below given sample code more than 5 minutes by changing the time frequency it might crash your system**

@@ -1,5 +1,7 @@
 # Data Conversion in Go Lang
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-general.data-types&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 Go's basic types are
 
 * bool

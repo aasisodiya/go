@@ -1,5 +1,7 @@
 # AWS SES Vs SendGrid Service
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-email-service&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 ## Comparison
 
 Each tool is targeted to a different audience. SendGrid is more of an all-inclusive tool, suitable for sending all kinds of emails, while Amazon SES does mainly transactional emails (but it does them really well). SES works with pay-as-you-go pricing, while SendGrid offers pre-designed plans.

@@ -1,5 +1,7 @@
 # Delete Objects in S3 Bucket
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-aws-operations.aws-s3.delete-objects&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 ## Question
 
 * Why doesn't it return error if we try to delete object that doesn't exists?

@@ -1,5 +1,7 @@
 # Go Lang
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-general.basics&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 - [Go Lang](#go-lang)
   - [What is Go?](#what-is-go)
   - [Why Go?](#why-go)

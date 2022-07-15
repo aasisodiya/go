@@ -1,5 +1,7 @@
 # Code Coverage in Go
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-general.code-coverage&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 - [Code Coverage in Go](#code-coverage-in-go)
   - [How to Measure Code Coverage](#how-to-measure-code-coverage)
     - [`go test -cover .` Command](#go-test--cover--command)

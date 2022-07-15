@@ -1,5 +1,7 @@
 # Using SendGrid with GoLang
 
+![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go.golang-email-service.sendgrid&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)
+
 ## Getting Started
 
 **Important:** Make sure to change the key value in sendgrid.go
