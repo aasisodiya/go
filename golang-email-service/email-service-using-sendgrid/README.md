@@ -42,7 +42,7 @@ r1.RecipientCCBCC = "none"
 
 ## Step 3: Create Recipients Array
 
-Create an array of Recipients, and add all intended recipient to the array. 
+Create an array of Recipients, and add all intended recipient to the array.
 
 (*Example: Consider there are 3 users and all are part of one common email, then only append the users, but if you want to send them individually then you will have to create an array of single user only*)
 
@@ -77,4 +77,7 @@ You will get `202` status code if everything goes well.
 * User don't come in CC/ BCC, then you have made mistake in step 2. RecipientCCBCC flag needs to be set only to CC / BCC - ALL CAPS and for all other values (even cc/bcc) it will neglect the flag
 
 ## Reference
+
 [Source](https://github.com/sendgrid/sendgrid-go, "Github")
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

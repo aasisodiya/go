@@ -102,3 +102,5 @@ alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a> -->
 4. [Delete Email](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/ses-example-delete-address.html)
 5. [Get Statistics](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/ses-example-get-statistics.html)
 6. [Monitor Usage Statistics](https://github.com/awsdocs/amazon-ses-developer-guide/blob/master/doc-source/monitor-usage-statistics-api.md)
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

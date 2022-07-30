@@ -31,3 +31,5 @@
 ](https://stackoverflow.com/questions/30697746/why-does-s3-deleteobject-not-fail-when-the-specified-key-doesnt-exist)
 * [Why is *a{…} invalid indirect?
 ](https://stackoverflow.com/questions/20890850/why-is-a-invalid-indirect)
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

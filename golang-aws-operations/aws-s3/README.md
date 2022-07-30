@@ -55,3 +55,5 @@ type APIGatewayProxyRequest struct {
 * [S3 Basic Example](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/s3-example-basic-bucket-operations.html)
 * [APIGatewayProxyRequest Structure](https://github.com/aws/aws-lambda-go/blob/v1.14.0/events/apigw.go#L6)
 * [Convert io.ReadCloser to a String](https://golangcode.com/convert-io-readcloser-to-a-string/)
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

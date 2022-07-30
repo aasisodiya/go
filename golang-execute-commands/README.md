@@ -76,3 +76,5 @@ Please make sure to build the code in `test` folder first and then copy the same
 
 - [Exec in Go Lang](https://golang.org/pkg/os/exec/)
 - [How to execute a simple Windows command in Golang?](https://stackoverflow.com/questions/13008255/how-to-execute-a-simple-windows-command-in-golang)
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

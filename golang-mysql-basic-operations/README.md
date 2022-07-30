@@ -139,3 +139,5 @@ Repeating this because it can be important, `sql.Open` may just validate its arg
 - [How to Install MySQL Server on Windows](https://www.youtube.com/watch?v=UgHRay7gN1g)
 - [MySQL Operations in Go Lang](https://godoc.org/github.com/go-sql-driver/mysql)
 - [Error: imported and not used: "github.com/go-sql-driver/mysql"](https://stackoverflow.com/questions/36256230/connection-fails-with-mysql-using-golang)
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

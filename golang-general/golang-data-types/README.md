@@ -35,3 +35,5 @@ The int, uint, and uintptr types are usually 32 bits wide on 32-bit systems and 
 |var s string|strconv.Atoi(s)<br>strconv.ParseInt(s, [10](base), [64](bitsize))|strconv.ParseFloat(s, [32](bitsize))|strconv.ParseBool(s)|s                                                                    |
 
 > Reference: [strconv - Go Doc](https://golang.org/pkg/strconv/)
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
