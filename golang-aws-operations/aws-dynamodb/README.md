@@ -309,3 +309,5 @@ OR
 * [Marshaling & Unmarshaling AttributeValue](https://docs.aws.amazon.com/sdk-for-go/api/service/dynamodb/dynamodbattribute/)
 --
 * [AWS DynamoDB Go Lang SDK Documentation - Delete Item from DynamoDB](https://docs.aws.amazon.com/sdk-for-go/api/service/dynamodb/#DynamoDB.DeleteItem)
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

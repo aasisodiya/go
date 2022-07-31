@@ -121,3 +121,5 @@
 > timer: 600 means 10 minutes
 >
 > timer: 3600 means 1 hour
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

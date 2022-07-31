@@ -337,3 +337,5 @@ type Generate interface {
 ## Reference
 
 [Pluralsight](https://app.pluralsight.com/score/skill-assessment/go/intro?context=skills#/v2/landing)
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

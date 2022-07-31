@@ -51,3 +51,5 @@ Below powershell command will help you test the code written in [main.go](https:
 $response = Invoke-RestMethod 'http://localhost:8090/get-sample' -Method 'GET' -Headers $headers
 $response | ConvertTo-Json
 ```
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

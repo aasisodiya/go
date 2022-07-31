@@ -32,3 +32,5 @@ Each tool is targeted to a different audience. SendGrid is more of an all-inclus
 ---
 
 [Source](https://blog.mailtrap.io/amazon-ses-vs-sendgrid/)
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
