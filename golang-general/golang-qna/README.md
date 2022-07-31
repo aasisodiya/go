@@ -43,4 +43,4 @@ package github.com/aasisodiya/general.git: invalid version control suffix in git
 
 **Reason/Solution**: `.git` suffix at the end of the github url was thee root cause, which obviously is incorrect and a silly mistake. So simply changing the `github.com/aasisodiya/general.git` to `github.com/aasisodiya/general` in `go.mod` fixed the issue
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&label=aasisodiya/go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

@@ -125,7 +125,7 @@ But in case you're on AWS EC2 Linux Machine this won't work. So below are steps 
 
 For analyzing the issue we are going to need a heap profile, so lets create some
 
-First command that you will run, is for creating an initial heap for comparison. *We will run this when the program starts*
+First command that you will run, is for creating an initial heap for comparison. _We will run this when the program starts_
 
 ```bash
 curl -s http://localhost:8080/debug/pprof/heap > initial.heap
@@ -182,13 +182,13 @@ When you run different `go tool pprof` commands it will open a new view as shown
 
 Now you can use following commands for mentioned purpose
 
-|Command|Description|
-|-------|-----------|
-|`top`|Shows you the top allocations|
-|`topn`|Replace n with any number and it will give you top n allocations ex. `top5` will give you top 5 allocations|
-|`list`|Shows annotated source (i.e basically the line of code) along with memory occupied by it|
-|`web`|Displays profile graph in a browser. *Won't work on EC2 Linux Instance*|
-|`svg`|Generate profile graph and save it to svg format file. You will have to use this on ec2 instead of `web` command|
+| Command | Description                                                                                                      |
+| ------- | ---------------------------------------------------------------------------------------------------------------- |
+| `top`   | Shows you the top allocations                                                                                    |
+| `topn`  | Replace n with any number and it will give you top n allocations ex. `top5` will give you top 5 allocations      |
+| `list`  | Shows annotated source (i.e basically the line of code) along with memory occupied by it                         |
+| `web`   | Displays profile graph in a browser. _Won't work on EC2 Linux Instance_                                          |
+| `svg`   | Generate profile graph and save it to svg format file. You will have to use this on ec2 instead of `web` command |
 
 #### `top` & `topn` command
 
@@ -236,4 +236,4 @@ You can clearly identify the root cause from here based on the size of node and 
 - [Finding Memory Leaks in Go Programs - Oleg Shaldybin](https://www.youtube.com/watch?v=ydWFpcoYraU)
 - [Profiling Your Go Programs (Episode 8)](https://www.youtube.com/watch?v=7LCgsfHlMv4)
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&label=aasisodiya/go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

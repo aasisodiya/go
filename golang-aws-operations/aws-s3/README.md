@@ -28,15 +28,15 @@ type APIGatewayProxyRequest struct {
 1. Create mod `go mod init github.com/aasisodiya/s3`
 2. Add below line to go.mod, where github.com/aasisodiya/aws is replaced with relative path of aws folder containing the required functions
 
-    ```
-    replace github.com/aasisodiya/aws => ../../aws
-    ```
+   ```
+   replace github.com/aasisodiya/aws => ../../aws
+   ```
 
 3. Call the required method from aws inside main.go
 
 ## Troubleshooting
 
-* **Error:** MissingRegion: could not find region configuration
+- **Error:** MissingRegion: could not find region configuration
 
   Below code doesn't work
 
@@ -52,8 +52,8 @@ type APIGatewayProxyRequest struct {
 
 ## Reference
 
-* [S3 Basic Example](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/s3-example-basic-bucket-operations.html)
-* [APIGatewayProxyRequest Structure](https://github.com/aws/aws-lambda-go/blob/v1.14.0/events/apigw.go#L6)
-* [Convert io.ReadCloser to a String](https://golangcode.com/convert-io-readcloser-to-a-string/)
+- [S3 Basic Example](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/s3-example-basic-bucket-operations.html)
+- [APIGatewayProxyRequest Structure](https://github.com/aws/aws-lambda-go/blob/v1.14.0/events/apigw.go#L6)
+- [Convert io.ReadCloser to a String](https://golangcode.com/convert-io-readcloser-to-a-string/)
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&label=aasisodiya/go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

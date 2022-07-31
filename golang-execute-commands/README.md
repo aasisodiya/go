@@ -14,7 +14,7 @@ import (
 
 ### Create Command You Want To Execute
 
-For creating command we use `exec.Command()` with the arguments - command, followed by the elements of arg. Example given below. *Note: You can also configue buffered input and output here, please refer to this [link](https://golang.org/pkg/os/exec/)*
+For creating command we use `exec.Command()` with the arguments - command, followed by the elements of arg. Example given below. _Note: You can also configue buffered input and output here, please refer to this [link](https://golang.org/pkg/os/exec/)_
 
 ```go
 // Command Name Only Example
@@ -41,7 +41,7 @@ if err != nil {
 
 ### Another Way To Run The Command
 
-Here we are executing the command and also displaying its output. The Function `Output()` runs the command and returns its generated output. Any returned error will usually be of type *ExitError. If c.Stderr was nil, Output populates ExitError.Stderr.
+Here we are executing the command and also displaying its output. The Function `Output()` runs the command and returns its generated output. Any returned error will usually be of type \*ExitError. If c.Stderr was nil, Output populates ExitError.Stderr.
 
 ```go
 out, err := exec.Command("c:/tmp/test.exe", "arg1", "arg2").Output()
@@ -53,20 +53,20 @@ fmt.Printf(string(out))
 
 ## Troubleshooting
 
-- **Error:** `yourcommand: executable file not found in %path%` 
+- **Error:** `yourcommand: executable file not found in %path%`
 
-    **Solution:** While I started working on this with Windows OS, I faced issue executing commands. So I found a workaround i.e to pass the complete path of the executable command. [Source](https://stackoverflow.com/questions/13008255/how-to-execute-a-simple-windows-command-in-golang)
+  **Solution:** While I started working on this with Windows OS, I faced issue executing commands. So I found a workaround i.e to pass the complete path of the executable command. [Source](https://stackoverflow.com/questions/13008255/how-to-execute-a-simple-windows-command-in-golang)
 
-    ```go
-    c := exec.Command("cmd", "/C", "del", "D:\\a.txt")
-    if err := c.Run(); err != nil {
-        fmt.Println("Error: ", err)
-    }
-    ```
+  ```go
+  c := exec.Command("cmd", "/C", "del", "D:\\a.txt")
+  if err := c.Run(); err != nil {
+      fmt.Println("Error: ", err)
+  }
+  ```
 
-    ```go
-    exec.Command("c:\\del.bat").Run()
-    ```
+  ```go
+  exec.Command("c:\\del.bat").Run()
+  ```
 
 ## For Running the Sample Code
 
@@ -77,4 +77,4 @@ Please make sure to build the code in `test` folder first and then copy the same
 - [Exec in Go Lang](https://golang.org/pkg/os/exec/)
 - [How to execute a simple Windows command in Golang?](https://stackoverflow.com/questions/13008255/how-to-execute-a-simple-windows-command-in-golang)
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&label=aasisodiya/go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
