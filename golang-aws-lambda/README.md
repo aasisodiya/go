@@ -344,7 +344,10 @@ func main(){
 
 While using `append()` you pass the Array as first parameter and second parameter onwards are your element you want to add. You can add multiple elements as well.
 
-> **Reference:** <br> [Tour Go Lang](https://tour.golang.org/moretypes/15) <br> [Stackoverflow](https://stackoverflow.com/questions/3387273/how-to-implement-resizable-arrays-in-go/3437599)
+## Reference
+
+- [Tour Go Lang](https://tour.golang.org/moretypes/15)
+- [Stackoverflow](https://stackoverflow.com/questions/3387273/how-to-implement-resizable-arrays-in-go/3437599)
 
 Note: _If You want to run your sample go code online you can use below mentioned link_
 
