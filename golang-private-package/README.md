@@ -12,7 +12,7 @@ set GO111MODULE=
 set GOARCH=amd64
 set GOBIN=
 set GOCACHE=C:\Users\akash\AppData\Local\go-build
-set GOENV=C:\Users\akash\AppData\Roaming\go\env  
+set GOENV=C:\Users\akash\AppData\Roaming\go\env
 set GOEXE=.exe
 set GOFLAGS=
 set GOHOSTARCH=amd64
@@ -57,25 +57,25 @@ If you get similar error `410 Gone` then it might be because of the URL being a 
 
 The new `GOPRIVATE` environment variable indicates module paths that are not publicly available. It serves as the default value for the lower-level `GONOPROXY` and `GONOSUMDB` variables, which provide finer-grained control over which modules are fetched via proxy and verified using the checksum database.
 
-* in cmd.exe:
+- in cmd.exe:
 
-    ``` bat
-    set GOPRIVATE=some.private.repo.git
-    set GONOSUMDB=some.private.repo.git
-    ```
+  ```bat
+  set GOPRIVATE=some.private.repo.git
+  set GONOSUMDB=some.private.repo.git
+  ```
 
-* in Powershell:
+- in Powershell:
 
-    ``` posh
-    $env:GOPRIVATE = "some.private.repo.git"
-    $env:GONOSUMDB = "some.private.repo.git"
-    ```
+  ```posh
+  $env:GOPRIVATE = "some.private.repo.git"
+  $env:GONOSUMDB = "some.private.repo.git"
+  ```
 
 ### Note
 
-* `GOPRIVATE = "some.private.repo.git/"` will not work because of `/` at the end
-* `GOPRIVATE = "some.private.repo.git,some.otherprivate.repo.git"` you can add more than one private repo by separating them with comma (,)
-* Connection Time Out Error on EC2
+- `GOPRIVATE = "some.private.repo.git/"` will not work because of `/` at the end
+- `GOPRIVATE = "some.private.repo.git,some.otherprivate.repo.git"` you can add more than one private repo by separating them with comma (,)
+- Connection Time Out Error on EC2
 
   ```posh
   exit status 128:
@@ -93,6 +93,6 @@ The new `GOPRIVATE` environment variable indicates module paths that are not pub
 
 ## Reference
 
-* [Private Repo in Go](https://stackoverflow.com/questions/57885949/private-repo-go-1-13-go-mod-failed-ping-sum-golang-org-lookup-ver/57887036#57887036)
+- [Private Repo in Go](https://stackoverflow.com/questions/57885949/private-repo-go-1-13-go-mod-failed-ping-sum-golang-org-lookup-ver/57887036#57887036)
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&label=aasisodiya/go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

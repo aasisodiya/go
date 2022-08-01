@@ -25,6 +25,6 @@ type APIGatewayProxyRequest struct {
 
 You will have to use this object quite often if you are going to use API GW
 
->Respective operations detail are given in their respective directory
+> Respective operations detail are given in their respective directory
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&label=aasisodiya/go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

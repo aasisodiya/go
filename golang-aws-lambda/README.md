@@ -22,32 +22,32 @@ Windows developers may have trouble producing a zip file that marks the binary a
 
 1. Get the tool
 
-    ``` shell
-    set GO111MODULE=on
-    go.exe get -u github.com/aws/aws-lambda-go/cmd/build-lambda-zip
-    ```
+   ```shell
+   set GO111MODULE=on
+   go.exe get -u github.com/aws/aws-lambda-go/cmd/build-lambda-zip
+   ```
 
-1. Use the tool from your `GOPATH`. If you have a default installation of Go, the tool will be in `%USERPROFILE%\Go\bin`. 
+1. Use the tool from your `GOPATH`. If you have a default installation of Go, the tool will be in `%USERPROFILE%\Go\bin`.
 
-    * in cmd.exe:
+   - in cmd.exe:
 
-        ``` bat
-        set GOOS=linux
-        set GOARCH=amd64
-        set CGO_ENABLED=0
-        go build -o main main.go
-        %USERPROFILE%\Go\bin\build-lambda-zip.exe --output main.zip main
-        ```
+     ```bat
+     set GOOS=linux
+     set GOARCH=amd64
+     set CGO_ENABLED=0
+     go build -o main main.go
+     %USERPROFILE%\Go\bin\build-lambda-zip.exe --output main.zip main
+     ```
 
-    * in Powershell:
+   - in Powershell:
 
-        ``` posh
-        $env:GOOS = "linux"
-        $env:GOARCH = "amd64"
-        $env:CGO_ENABLED = "0"
-        go build -o main main.go
-        ~\Go\Bin\build-lambda-zip.exe --output main.zip main
-        ```
+     ```posh
+     $env:GOOS = "linux"
+     $env:GOARCH = "amd64"
+     $env:CGO_ENABLED = "0"
+     go build -o main main.go
+     ~\Go\Bin\build-lambda-zip.exe --output main.zip main
+     ```
 
 ### To do a cross-compilation in single line
 
@@ -95,101 +95,101 @@ Even Response is strictly related to your response object. Above response is in 
 
 ## Troubleshooting
 
-* **Issue:** Lambda gives following error while testing
+- **Issue:** Lambda gives following error while testing
 
-    ```json
-    {
-      "errorMessage": "fork/exec /var/task/main: permission denied",
-      "errorType": "PathError"
-    }
-    ```
+  ```json
+  {
+    "errorMessage": "fork/exec /var/task/main: permission denied",
+    "errorType": "PathError"
+  }
+  ```
 
-    **Solution:** Issue commonly occurs for windows users. You can't zip the executable file directly instead are required to use command depending on what you are using:
+  **Solution:** Issue commonly occurs for windows users. You can't zip the executable file directly instead are required to use command depending on what you are using:
 
-  * Command Prompt
+  - Command Prompt
 
     ```bat
     %USERPROFILE%\Go\bin\build-lambda-zip.exe --output main.zip main
     ```
 
-  * Powershell:
+  - Powershell:
 
     ```posh
     ~\Go\Bin\build-lambda-zip.exe --output main.zip main
     ```
 
-* **Issue:** Facing issue while moving executable file to zip: `flag provided but not defined: -o`
+- **Issue:** Facing issue while moving executable file to zip: `flag provided but not defined: -o`
 
-    ```bat
-    Reference\GoLang\Lambda-GoLang>%USERPROFILE%\Go\bin\build-lambda-zip.exe -o main.zip main
-    Incorrect Usage. flag provided but not defined: -o
+  ```bat
+  Reference\GoLang\Lambda-GoLang>%USERPROFILE%\Go\bin\build-lambda-zip.exe -o main.zip main
+  Incorrect Usage. flag provided but not defined: -o
 
-    NAME:
-       build-lambda-zip - Put an executable and supplemental files into a zip file that works with AWS Lambda.
+  NAME:
+     build-lambda-zip - Put an executable and supplemental files into a zip file that works with AWS Lambda.
 
-    USAGE:
-       build-lambda-zip.exe [global options] command [command options] [arguments...]
+  USAGE:
+     build-lambda-zip.exe [global options] command [command options] [arguments...]
 
-    COMMANDS:
-       help, h  Shows a list of commands or help for one command
+  COMMANDS:
+     help, h  Shows a list of commands or help for one command
 
-    GLOBAL OPTIONS:
-       --output value  output file path for the zip. Defaults to the first input file name.
-       --help, -h      show help (default: false)
-    flag provided but not defined: -o
-    ```
+  GLOBAL OPTIONS:
+     --output value  output file path for the zip. Defaults to the first input file name.
+     --help, -h      show help (default: false)
+  flag provided but not defined: -o
+  ```
 
-  * **Solution:** Use `--output` instead of `-o`
+  - **Solution:** Use `--output` instead of `-o`
 
-      So your command becomes like this for CMD: `%USERPROFILE%\Go\bin\build-lambda-zip.exe --output main.zip main` and for Powershell: `~\Go\Bin\build-lambda-zip.exe --output main.zip main`
+    So your command becomes like this for CMD: `%USERPROFILE%\Go\bin\build-lambda-zip.exe --output main.zip main` and for Powershell: `~\Go\Bin\build-lambda-zip.exe --output main.zip main`
 
 ## Instructions to Write Lambda in Golang (Essentials)
 
 1. Define Imports
 
-    ```golang
-    import (
-      "errors"
+   ```golang
+   import (
+     "errors"
 
-      "github.com/aws/aws-lambda-go/events"
-      "github.com/aws/aws-lambda-go/lambda"
-    )
-    ```
+     "github.com/aws/aws-lambda-go/events"
+     "github.com/aws/aws-lambda-go/lambda"
+   )
+   ```
 
-    * Above 3 imports are necessary for most cases, `"github.com/aws/aws-lambda-go/events"` is required for creating Request and Response object for lambda
-    * `"errors"` is required for handeling errors for invalid request
+   - Above 3 imports are necessary for most cases, `"github.com/aws/aws-lambda-go/events"` is required for creating Request and Response object for lambda
+   - `"errors"` is required for handeling errors for invalid request
 
 1. Create a function to handle request with events.APIGatewayProxyRequest as parameter and events.APIGatewayProxyResponse and error as return values. Then you can handle the request based on HTTPMethod type (a check for type is good idea). Also make sure to handle the invalid requests. For building response we use [`events.APIGatewayProxyResponse`](https://github.com/aws/aws-lambda-go/blob/master/events/apigw.go) and then return the same.
 
-    ```golang
-    func HandleRequest(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-      if request.HTTPMethod == "GET" {
-        stringResponse := "Ok here is GET Method"
-        APIResponse := events.APIGatewayProxyResponse{Body: stringResponse, StatusCode: 200}
-        return APIResponse, nil
-      } else {
-        err := errors.New("Method Not Allowed")
-        APIResponse := events.APIGatewayProxyResponse{Body: "Method Not Allowed!", StatusCode: 502}
-        return APIResponse, err
-      }
-    }
-    ```
+   ```golang
+   func HandleRequest(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+     if request.HTTPMethod == "GET" {
+       stringResponse := "Ok here is GET Method"
+       APIResponse := events.APIGatewayProxyResponse{Body: stringResponse, StatusCode: 200}
+       return APIResponse, nil
+     } else {
+       err := errors.New("Method Not Allowed")
+       APIResponse := events.APIGatewayProxyResponse{Body: "Method Not Allowed!", StatusCode: 502}
+       return APIResponse, err
+     }
+   }
+   ```
 
 1. Now call above function from `main()` function using `lambda.Start()` with `HandleRequest` as input parameter.
 
-    ```golang
-    func main() {
-      lambda.Start(HandleRequest)
-      // lambda.Start(Handler)
-    }
-    ```
+   ```golang
+   func main() {
+     lambda.Start(HandleRequest)
+     // lambda.Start(Handler)
+   }
+   ```
 
 ## Reference
 
-* [Issue: /var/task/main: permission denied](https://github.com/awslabs/aws-sam-cli/issues/274)
-* [AWS Lambda in Go Lang for Windows Developer](https://github.com/aws/aws-lambda-go#for-developers-on-windows)
-* [Events Structure in Go Lang for Lambda](https://godoc.org/github.com/aws/aws-lambda-go/events)
-* [How to Cross-Compile Go Program on Windows](https://stackoverflow.com/questions/50911153/how-to-crosscompile-go-programs-on-windows-10)
+- [Issue: /var/task/main: permission denied](https://github.com/awslabs/aws-sam-cli/issues/274)
+- [AWS Lambda in Go Lang for Windows Developer](https://github.com/aws/aws-lambda-go#for-developers-on-windows)
+- [Events Structure in Go Lang for Lambda](https://godoc.org/github.com/aws/aws-lambda-go/events)
+- [How to Cross-Compile Go Program on Windows](https://stackoverflow.com/questions/50911153/how-to-crosscompile-go-programs-on-windows-10)
 
 ## Q&A
 
@@ -227,9 +227,9 @@ func main() {
 
 Also you might have noticed `json:"myName,omitempty"` being used in above code. Now what this does is, while generating JSON it replaces the property name with json defined name. That's why our generated output looks like this `{"ID":1,"myName":"akash"}` and not like this `{"ID":1,"Name":"akash"}`. Also `omitempty` helps us if we want to elimate empty data from our generated json. So if the value for temp.Name was undefined then our result will be like this `{"ID":1}`
 
-**Important Point to Note:** If you don't put a comma just before closing bracket `}` of object definition you will get an error. *Please refer to comment in code above*
+**Important Point to Note:** If you don't put a comma just before closing bracket `}` of object definition you will get an error. _Please refer to comment in code above_
 
->**Reference:** <br> [Stackoverflow](https://stackoverflow.com/questions/8270816/converting-go-struct-to-json) <br> [Go Lang Official Doc](https://golang.org/pkg/encoding/json/#Marshal)
+> **Reference:** <br> [Stackoverflow](https://stackoverflow.com/questions/8270816/converting-go-struct-to-json) <br> [Go Lang Official Doc](https://golang.org/pkg/encoding/json/#Marshal)
 
 ---
 
@@ -251,9 +251,9 @@ If you use above given struct, then on using `json.Marshal()` you will get below
 
 ```json
 {
-    "id":       "aasisodiya", // ID got replaced with id because of `json:"id"`
-    "Name":     "Akash",      // Name and NickName are as it is as we didn't
-    "NickName": "Bhai"        // specify any formatting for them in json
+  "id": "aasisodiya", // ID got replaced with id because of `json:"id"`
+  "Name": "Akash", // Name and NickName are as it is as we didn't
+  "NickName": "Bhai" // specify any formatting for them in json
 }
 ```
 
@@ -271,8 +271,8 @@ Now what `json:"-"` does is, it removes that property while marshalling. Hence w
 
 ```json
 {
-    "id":       "aasisodiya",
-    "Name":     "Akash"
+  "id": "aasisodiya",
+  "Name": "Akash"
 }
 ```
 
@@ -307,11 +307,11 @@ So your test event will look like this
 
 ```json
 {
-    "pathParameters": {
-        "pathParameter1": "pathParameterValue1",
-        "pathParameter2": "pathParameterValue2"
-    },
-    "body": "sample text body"
+  "pathParameters": {
+    "pathParameter1": "pathParameterValue1",
+    "pathParameter2": "pathParameterValue2"
+  },
+  "body": "sample text body"
 }
 ```
 
@@ -344,10 +344,13 @@ func main(){
 
 While using `append()` you pass the Array as first parameter and second parameter onwards are your element you want to add. You can add multiple elements as well.
 
-> **Reference:** <br> [Tour Go Lang](https://tour.golang.org/moretypes/15) <br> [Stackoverflow](https://stackoverflow.com/questions/3387273/how-to-implement-resizable-arrays-in-go/3437599)
+## Reference
 
-Note: *If You want to run your sample go code online you can use below mentioned link*
+- [Tour Go Lang](https://tour.golang.org/moretypes/15)
+- [Stackoverflow](https://stackoverflow.com/questions/3387273/how-to-implement-resizable-arrays-in-go/3437599)
+
+Note: _If You want to run your sample go code online you can use below mentioned link_
 
 > **Go Online IDE:** [The Go Playground](https://play.golang.org/)
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&label=aasisodiya/go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

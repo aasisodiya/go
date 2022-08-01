@@ -98,31 +98,31 @@ type MyStruct struct {
 
 `go install *`
 
-*from within the parent package directory*
+_from within the parent package directory_
 
 :heavy_check_mark: Run
 
 `go install ./...`
 
-*from within the parent package directory*
+_from within the parent package directory_
 
 :heavy_multiplication_x: Run
 
 `go install ...`
 
-*from within the parent package directory*
+_from within the parent package directory_
 
 :heavy_multiplication_x: Run
 
 `go install **/*`
 
-*from within the parent package directory*
+_from within the parent package directory_
 
 ---
 
 :grey_question: **Consider that you have to write a function which converts any image format into JPEG. In order for an image to be converted from different formats, particular package(s) are required for its initialization (side effects), even if nothing is used from the package. Assume a PNG image format is being converted, which uses package "image/png". What is the correct way to import the package purely for its init function execution?**
 
-:heavy_check_mark: `import _ “image/png”`
+:heavy*check_mark: `import * “image/png”`
 
 :heavy_multiplication_x: `#import “image/png”`
 
@@ -338,4 +338,4 @@ type Generate interface {
 
 [Pluralsight](https://app.pluralsight.com/score/skill-assessment/go/intro?context=skills#/v2/landing)
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&label=aasisodiya/go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

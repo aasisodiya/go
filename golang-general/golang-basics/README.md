@@ -1227,4 +1227,4 @@ For above `Refernce Types` you don't have to worry about pointers. But for `Valu
 - [Standard Tools](https://golang.org/doc/cmd)
 - [Learn Go in 3 Hours](https://www.udemy.com/course/learn-go-in-3-hours/)
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&label=aasisodiya/go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

@@ -4,17 +4,17 @@
 
 ## Question
 
-* Why doesn't it return error if we try to delete object that doesn't exists?
+- Why doesn't it return error if we try to delete object that doesn't exists?
 
-    **Answer:** Because that's what the specs says it should do -> "Removes the null version (if there is one) of an object and inserts a delete marker, which becomes the latest version of the object. If there isn't a null version, Amazon S3 does not remove any objects.", if the object doesn't exists, it's still not an error when calling deleteObject
+  **Answer:** Because that's what the specs says it should do -> "Removes the null version (if there is one) of an object and inserts a delete marker, which becomes the latest version of the object. If there isn't a null version, Amazon S3 does not remove any objects.", if the object doesn't exists, it's still not an error when calling deleteObject
 
-* `Error: cannot use objectkeys[i] (type string) as type *string in field value`
+- `Error: cannot use objectkeys[i] (type string) as type *string in field value`
 
-    **Answer:** The AWS SDK uses string pointers for most of its inputs due to the vagueries of the AWS API. It does include a helper function, aws.String, for this purpose: aws.String("STRING"),
+  **Answer:** The AWS SDK uses string pointers for most of its inputs due to the vagueries of the AWS API. It does include a helper function, aws.String, for this purpose: aws.String("STRING"),
 
-* `Error: invalid indirect of s3.ObjectIdentifier literal (type s3.ObjectIdentifier)`
+- `Error: invalid indirect of s3.ObjectIdentifier literal (type s3.ObjectIdentifier)`
 
-  **Answer:** You'll need to create a pointer to the value you're creating, which is done with & , * does the opposite, it dereferences a pointer.
+  **Answer:** You'll need to create a pointer to the value you're creating, which is done with & , \* does the opposite, it dereferences a pointer.
 
   ```golang
   var objects []*s3.ObjectIdentifier
@@ -27,9 +27,9 @@
 
 ## Reference
 
-* [Why does S3.deleteObject not fail when the specified key doesn't exist?
-](https://stackoverflow.com/questions/30697746/why-does-s3-deleteobject-not-fail-when-the-specified-key-doesnt-exist)
-* [Why is *a{…} invalid indirect?
-](https://stackoverflow.com/questions/20890850/why-is-a-invalid-indirect)
+- [Why does S3.deleteObject not fail when the specified key doesn't exist?
+  ](https://stackoverflow.com/questions/30697746/why-does-s3-deleteobject-not-fail-when-the-specified-key-doesnt-exist)
+- [Why is \*a{…} invalid indirect?
+  ](https://stackoverflow.com/questions/20890850/why-is-a-invalid-indirect)
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&label=aasisodiya/go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)

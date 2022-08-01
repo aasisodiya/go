@@ -31,9 +31,9 @@ type NullString struct {
 
 It can get complicated while creating JSON for the same object. You can refer to this [article I found for doing the same](https://medium.com/aubergine-solutions/how-i-handled-null-possible-values-from-database-rows-in-golang-521fb0ee267)
 
->**Reference:** <br> [Stackoverflow](https://stackoverflow.com/questions/44891030/scan-error-unsupported-scan-storing-driver-value-type-nil-into-type-string) <br> [Stackoverflow: Difference between *string and sql.NullString](https://stackoverflow.com/questions/40092155/difference-between-string-and-sql-nullstring) <br> [Stackoverflow: How do you marshal a sql.NullString such that the output is flattened to give just the value in go?](https://stackoverflow.com/questions/51961358/how-do-you-marshal-a-sql-nullstring-such-that-the-output-is-flattened-to-give-ju/51961903)
+> **Reference:** <br> [Stackoverflow](https://stackoverflow.com/questions/44891030/scan-error-unsupported-scan-storing-driver-value-type-nil-into-type-string) <br> [Stackoverflow: Difference between \*string and sql.NullString](https://stackoverflow.com/questions/40092155/difference-between-string-and-sql-nullstring) <br> [Stackoverflow: How do you marshal a sql.NullString such that the output is flattened to give just the value in go?](https://stackoverflow.com/questions/51961358/how-do-you-marshal-a-sql-nullstring-such-that-the-output-is-flattened-to-give-ju/51961903)
 
-Note: *If You want to run your sample go code online you can use below mentioned link*
+Note: _If You want to run your sample go code online you can use below mentioned link_
 
 > **Go Online IDE:** [The Go Playground](https://play.golang.org/)
 
@@ -121,4 +121,4 @@ func newNullBool(b *bool) sql.NullBool {
 }
 ```
 
-[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&label=aasisodiya/go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
