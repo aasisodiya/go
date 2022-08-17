@@ -85,6 +85,7 @@
 | `go get`      | command to import any external public package. Example `go get github.com/aasisodiya/go` |
 | `go test`     | Will execute the tests                                                                   |
 | `go mod init` | Will initialize a module. Example `go mod init github.com/aasisodiya/goprgm`             |
+| `go vet`      | Will examines Go source code and reports suspicious constructs                           |
 
 `* here multiple go files refer to multiple package main files in same folder, ex main.go, handler.go are in same folder and have same package main`
 
