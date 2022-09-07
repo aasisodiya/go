@@ -5,6 +5,7 @@
 - [Go Lang](#go-lang)
   - [What is Go?](#what-is-go)
   - [Why Go?](#why-go)
+  - [Steps to install go on EC2 Machine](#steps-to-install-go-on-ec2-machine)
   - [Go Commands](#go-commands)
   - [Variable Declaration in Go](#variable-declaration-in-go)
   - [Data Types in Go](#data-types-in-go)
@@ -69,6 +70,21 @@
 ---
 
 > Click on this [link to download Go](https://go.dev/dl/)
+
+---
+
+## Steps to install go on EC2 Machine
+
+```cmd
+sudo apt-get update
+sudo apt-get -y upgrade
+
+wget https://dl.google.com/go/goVERSION.linux-amd64.tar.gz
+sudo tar -xvf goVERSION.linux-amd64.tar.gz
+sudo mv go /usr/local
+
+export GOROOT=/usr/local/go
+```
 
 ---
 
