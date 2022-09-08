@@ -90,18 +90,20 @@ export GOROOT=/usr/local/go
 
 ## Go Commands
 
-| Command       | Description                                                                              |
-| ------------- | ---------------------------------------------------------------------------------------- |
-| `go build`    | Will compile the code and create an executable file                                      |
-| `go run`      | Will compile and run the code                                                            |
-| `go run .`    | Will compile and run the code for multiple\* go files on windows                         |
-| `go run *.go` | Will compile and run the code for multiple\* go files on macos                           |
-| `go fmt`      | Will format the code                                                                     |
-| `go install`  | Will compile and install the package                                                     |
-| `go get`      | command to import any external public package. Example `go get github.com/aasisodiya/go` |
-| `go test`     | Will execute the tests                                                                   |
-| `go mod init` | Will initialize a module. Example `go mod init github.com/aasisodiya/goprgm`             |
-| `go vet`      | Will examines Go source code and reports suspicious constructs                           |
+| Command                    | Description                                                                              |
+| -------------------------- | ---------------------------------------------------------------------------------------- |
+| `go build`                 | Will compile the code and create an executable file                                      |
+| `go run`                   | Will compile and run the code                                                            |
+| `go run .`                 | Will compile and run the code for multiple\* go files on windows                         |
+| `go run *.go`              | Will compile and run the code for multiple\* go files on macos                           |
+| `go fmt`                   | Will format the code                                                                     |
+| `go install`               | Will compile and install the package                                                     |
+| `go get`                   | command to import any external public package. Example `go get github.com/aasisodiya/go` |
+| `go test`                  | Will execute the tests                                                                   |
+| `go mod init`              | Will initialize a module. Example `go mod init github.com/aasisodiya/goprgm`             |
+| `go vet`                   | Will examines Go source code and reports suspicious constructs                           |
+| `go mod init package-name` | Initializes and writes a new `go.mod` file                                               |
+| `go mod tidy`              | Ensures that the go.mod file matches the source code in the module                       |
 
 `* here multiple go files refer to multiple package main files in same folder, ex main.go, handler.go are in same folder and have same package main`
 
