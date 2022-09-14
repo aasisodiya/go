@@ -204,7 +204,8 @@ So on analyzing we can see an issue with `main.Recur`. But where's the issue in 
 
 ![List Shows annotated source](img/img8.png)
 
-Now we can clearly spot the line of code with issue and start to work on resolving it.
+Now we can clearly spot the line of code with issue and start to work on resolving it.  
+For example you can see that Line No. 42 and 43 are increasing the heap size whereas Line No. 46 is the root cause. Since there is no return statement or closing statement for reccuring function hence we are facing Memory Leak.
 
 #### `svg` and `web` command
 
