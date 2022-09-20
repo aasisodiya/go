@@ -36,6 +36,8 @@
   - [Testing in Go](#testing-in-go)
   - [Printing out an Object](#printing-out-an-object)
   - [Pointer in Go](#pointer-in-go)
+  - [Closure in Go Lang](#closure-in-go-lang)
+  - [Anonymous Function](#anonymous-function)
   - [Reference](#reference)
 
 ![Visitor](https://visitor-badge.glitch.me/badge?page_id=aasisodiya.go)
@@ -1238,7 +1240,39 @@ Hence when you pass int, string, float or struct in any function in go, it creat
 | bool        | pointers        |
 | structs     | functions       |
 
-For above `Refernce Types` you don't have to worry about pointers. But for `Value Types` you have to use pointers to change them in functions.
+For above `Reference Types` you don't have to worry about pointers. But for `Value Types` you have to use pointers to change them in functions.
+
+---
+
+## Closure in Go Lang
+
+Closure is a function that references variables outside of its scope. A closure can outlive the scope in which it was created. Thus it can access variables within that scope, even after the scope is destroyed. Best example of closure is a counter function problem given below, where you declare a counter without exposing the variable to be interfered with.
+
+```go
+func counterFunc() func() int {
+  i := 0
+  return func() int {
+    i++
+    return i;
+  }
+}
+```
+
+[Click here](https://go.dev/play/p/eZEeK7PIJc_W) to run the sample code
+
+---
+
+## Anonymous Function
+
+Below is an example of anonymous function i.e. function without name. Basically this function are executed soon after it's declaration
+
+```go
+func(i int) {
+  fmt.Println(i)
+}(1)
+```
+
+---
 
 ## Reference
 
