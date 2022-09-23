@@ -39,6 +39,7 @@
   - [Closure in Go Lang](#closure-in-go-lang)
   - [Anonymous Function](#anonymous-function)
   - [Documenting Go Code with `godoc`](#documenting-go-code-with-godoc)
+    - [Using `godoc`](#using-godoc)
   - [Reference](#reference)
 
 ![Visitor](https://visitor-badge.glitch.me/badge?page_id=aasisodiya.go)
@@ -1314,10 +1315,36 @@ There are a few formatting rules that `Godoc` uses when converting comments to H
 - Pre-formatted text must be indented relative to the surrounding comment text (see gob’s doc.go for an example).
 - URLs will be converted to HTML links; no special markup is necessary.
 
+### Using `godoc`
+
+You might have to first install godoc if it's not present. For that you can use following command
+
+```cmd
+go install golang.org/x/tools/cmd/godoc@latest
+```
+
+After installing, you can run below command
+
+```cmd
+$GOPATH/bin/godoc  -http=:6060
+```
+
+For me it was below command on windows machine
+
+```cmd
+C:\Users\akash\go\bin\godoc.exe -http=:6060
+```
+
+This will start `Go Documentation Server` which you can access on [http://localhost:6060/pkg/](http://localhost:6060/pkg/)
+
+Now for how to write the godoc compatible code plz check [this link](https://github.com/aasisodiya/go/golang-godoc/)
+
 ## Reference
 
 - [Effective Go](https://golang.org/doc/effective_go)
 - [Standard Tools](https://golang.org/doc/cmd)
 - [Learn Go in 3 Hours](https://www.udemy.com/course/learn-go-in-3-hours/)
+- [Go Doc](https://go.dev/blog/godoc)
+- [Go Doc Tricks](https://pkg.go.dev/github.com/fluhus/godoc-tricks)
 
 [![Visitors](https://api.visitorbadge.io/api/visitors?path=aasisodiya.go&label=aasisodiya/go&labelColor=%23ffa500&countColor=%23263759&labelStyle=upper)](https://visitorbadge.io/status?path=aasisodiya.go)
