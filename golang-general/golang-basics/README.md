@@ -38,6 +38,7 @@
   - [Pointer in Go](#pointer-in-go)
   - [Closure in Go Lang](#closure-in-go-lang)
   - [Anonymous Function](#anonymous-function)
+  - [Documenting Go Code with `godoc`](#documenting-go-code-with-godoc)
   - [Reference](#reference)
 
 ![Visitor](https://visitor-badge.glitch.me/badge?page_id=aasisodiya.go)
@@ -1273,6 +1274,45 @@ func(i int) {
 ```
 
 ---
+
+## Documenting Go Code with `godoc`
+
+`Godoc` parses Go source code - including comments - and produces documentation as HTML or plain text. The end result is documentation tightly coupled with the code it documents. The comments read by godoc are not language constructs (as with Docstring) nor must they have their own machine-readable syntax (as with Javadoc). Godoc comments are just good comments, the sort you would want to read even if godoc didn’t exist.
+
+To document a type, variable, constant, function, or even a package, write **a regular comment directly preceding its declaration**, with **no intervening blank line**. Godoc will then present that comment as text alongside the item it documents. Example:
+
+```go
+// Fprint formats using the default formats for its operands and writes to w.
+// Spaces are added between operands when neither is a string.
+// It returns the number of bytes written and any write error encountered.
+func Fprint(w io.Writer, a ...interface{}) (n int, err error) {
+```
+
+As you can see Comment begins with function name followed by its description. Hence Syntax - `// functionName description...`
+
+Example of comment on `sort` package’s brief description:
+
+```go
+// Package sort provides primitives for sorting slices and user-defined
+// collections.
+package sort
+```
+
+The packages that need large amounts of introductory documentation, for such the package comment is placed in its own file, `doc.go`, which contains only those comments and a package clause. `gob` package is great example of this. [Check this link of gob package doc.go](https://cs.opensource.google/go/go/+/refs/tags/go1.19.1:src/encoding/gob/doc.go)
+
+> When writing package comments of any size, keep in mind that their first sentence will appear in godoc’s package list.
+
+Top-level comments that begin with the word `BUG(who)` are recognized as known bugs, and included in the `Bugs` section of the package documentation. The `who` part should be the user name of someone who could provide more information. For example, this is a known issue from the bytes package:
+
+```go
+// BUG(r): The rule Title uses for word boundaries does not handle Unicode punctuation properly.
+```
+
+There are a few formatting rules that `Godoc` uses when converting comments to HTML:
+
+- Subsequent lines of text are considered part of the same paragraph; you must leave a blank line to separate paragraphs.
+- Pre-formatted text must be indented relative to the surrounding comment text (see gob’s doc.go for an example).
+- URLs will be converted to HTML links; no special markup is necessary.
 
 ## Reference
 
