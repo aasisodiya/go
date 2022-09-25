@@ -12,9 +12,9 @@ const (
 )
 
 // GetCircleArea returns you the area of the circle with given radius
-func GetCircleArea(radius float64) (area_1 float64) {
-	area_1 = PI * radius * radius
-	fmt.Println(area_1)
+func GetCircleArea(radius float64) (area float64) {
+	area = PI * radius * radius
+	fmt.Println(area)
 	return
 }
 
