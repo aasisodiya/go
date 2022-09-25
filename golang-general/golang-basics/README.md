@@ -40,6 +40,7 @@
   - [Anonymous Function](#anonymous-function)
   - [Documenting Go Code with `godoc`](#documenting-go-code-with-godoc)
     - [Using `godoc`](#using-godoc)
+  - [Go Environment variables](#go-environment-variables)
   - [Reference](#reference)
 
 ![Visitor](https://visitor-badge.glitch.me/badge?page_id=aasisodiya.go)
@@ -1337,7 +1338,35 @@ C:\Users\akash\go\bin\godoc.exe -http=:6060
 
 This will start `Go Documentation Server` which you can access on [http://localhost:6060/pkg/](http://localhost:6060/pkg/)
 
-Now for how to write the godoc compatible code plz check [this link](https://github.com/aasisodiya/go/golang-godoc/)
+Now for how to write the godoc compatible code plz check [this link](https://aasisodiya.github.io/go/golang-godoc/)
+
+---
+
+## Go Environment variables
+
+|Variable|Description|
+|-|-|
+|GO111MODULE|Controls whether the go command runs in module-aware mode or GOPATH mode. May be "off", "on", or "auto". See https://golang.org/ref/mod#mod-commands.|
+|GCCGO|The gccgo command to run for 'go build -compiler=gccgo'.|
+|GOARCH|The architecture, or processor, for which to compile code. Examples are amd64, 386, arm, ppc64.|
+|GOBIN|The directory where 'go install' will install a command.|
+|GOCACHE|The directory where the go command will store cached information for reuse in future builds.|
+|GOMODCACHE|The directory where the go command will store downloaded modules.|
+|GODEBUG|Enable various debugging facilities. See 'go doc runtime' for details.|
+|GOENV|The location of the Go environment configuration file. Cannot be set using 'go env -w'. Setting GOENV=off in the environment disables the use of the default configuration file.|
+|GOFLAGS|A space-separated list of -flag=value settings to apply to go commands by default, when the given flag is known by the current command. Each entry must be a standalone flag. Because the entries are space-separated, flag values must not contain spaces. Flags listed on the command line are applied after this list and therefore override it.|
+|GOINSECURE|Comma-separated list of glob patterns (in the syntax of Go's path.Match) of module path prefixes that should always be fetched in an insecure manner. Only applies to dependencies that are being fetched directly. GOINSECURE does not disable checksum database validation. GOPRIVATE or GONOSUMDB may be used to achieve that.|
+|GOOS|The operating system for which to compile code. Examples are linux, darwin, windows, netbsd.|
+|GOPATH|For more details see: 'go help gopath'.|
+|GOPROXY|URL of Go module proxy. See https://golang.org/ref/mod#environment-variables and https://golang.org/ref/mod#module-proxy for details.|
+|GOPRIVATE, GONOPROXY, GONOSUMDB|Comma-separated list of glob patterns (in the syntax of Go's path.Match) of module path prefixes that should always be fetched directly or that should not be compared against the checksum database. See https://golang.org/ref/mod#private-modules.|
+|GOROOT|The root of the go tree.|
+|GOSUMDB|The name of checksum database to use and optionally its public key and URL. See https://golang.org/ref/mod#authenticating.|
+|GOTMPDIR|The directory where the go command will write temporary source files, packages, and binaries.|
+|GOVCS|Lists version control commands that may be used with matching servers.|
+|GOWORK|In module aware mode, use the given go.work file as a workspace file. By default or when GOWORK is "auto", the go command searches for a file named go.work in the current directory and then containing directories until one is found. If a valid go.work file is found, the modules specified will collectively be used as the main modules. If GOWORK is "off", or a go.work file is not found in "auto" mode, workspace mode is disabled.|
+
+---
 
 ## Reference
 
