@@ -120,7 +120,7 @@ This will open Go Documentation Server as shown below
 
 ![Go Documentation Server](./img/godoc1.png)
 
-Now from here click on `Third Part` link, this show you your package's synopsis as shown below
+Now from here click on `Third Party` link, this show you your package's synopsis as shown below
 
 ![Go Documentation Server](./img/godoc2.png)
 
