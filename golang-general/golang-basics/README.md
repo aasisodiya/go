@@ -26,7 +26,7 @@
   - [Type Assertion Vs Conversion](#type-assertion-vs-conversion)
   - [Type Switch](#type-switch)
   - [Errors in Go](#errors-in-go)
-  - [CSP & Go Routines](#csp--go-routines)
+  - [CSP \& Go Routines](#csp--go-routines)
   - [Channels for Sending Data between Go Routines](#channels-for-sending-data-between-go-routines)
   - [Buffer Channel](#buffer-channel)
   - [Deadlock in Go Routine](#deadlock-in-go-routine)
@@ -847,6 +847,12 @@ func main() {
   - Go Routine stack sizes are smaller than thread stack sizes and can grow as needed
   - Switching between go routines is faster than switching between threads.
   - Due to all this features go can spawn 1000 and 10000 of go routines (in a single process)
+- When a new goroutine is created, Go runtime will create a stack memory zone for the goroutine
+- The current official standard Go runtime uses contiguous stacks, which means the stack memory zone is a single continuous memory segment
+- Allocating memory blocks on stack is generally much faster than on heap
+- Memory blocks allocated on stack don't need to be garbage collected, which is another advantage over memory blocks allocated on memory heap.
+- Memory blocks allocated on stack are also often more CPU cache friendly then the ones allocated on heap.
+- If it is possible, the official standard Go Compiler will let Go Runtime try to allocate memory blocks on stack.
 
 Sample Go Routine Code is given below
 
@@ -868,7 +874,7 @@ func main() {
 
 > [Click here](https://play.golang.org/p/tB51QPoIsk5) to edit/run the code
 
-When you run the above code you will notice that you don't get any output. That is because main go routine didn't knew it had to wait for the other goroutine to finish execution. So for our go routine to execute we have different ways:
+When you run the above code you will notice that you don't get any output. That is because main go routine didn't knew, it had to wait for the other goroutine to finish execution. So for our go routine to execute we have different ways:
 
 - By Pausing using `time.Sleep(1*time.Second)`, **This is not recommended in real programs and should be avoided**
 - By using Wait Group, for which we use `"sync"` package
