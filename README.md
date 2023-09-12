@@ -43,3 +43,4 @@ Below are the links for respective README.md files in my repository
 | 05-Aug-2021 | [Regexp: Remove all numbers from a string](https://aasisodiya.github.io/go/golang-general/golang-regexp#remove-all-numbers-from-a-string) |
 | 2022-09-23 | [Documenting Go Code](https://aasisodiya.github.io/go/golang-general/golang-basics#documenting-go-code-with-godoc) |
 | 2022-09-23 | [Go Environment Variables](https://aasisodiya.github.io/go/golang-general/golang-basics#go-environment-variables) |
+| 2023-09-13 | [Unused Code in Golang](https://aasisodiya.github.io/go/golang-general/unused-code) |
