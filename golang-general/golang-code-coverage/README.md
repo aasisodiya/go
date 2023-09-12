@@ -8,6 +8,7 @@
     - [`go test ./... -coverprofile cover.out` Command](#go-test---coverprofile-coverout-command)
     - [`go tool cover -func cover.out` Command](#go-tool-cover--func-coverout-command)
     - [`go test -coverprofile=cover` Command](#go-test--coverprofilecover-command)
+    - [`go test ./... -coverprofile=cover` Command](#go-test---coverprofilecover-command)
     - [`go tool cover -html=cover` Command](#go-tool-cover--htmlcover-command)
 
 Code Coverage helps you to validate your code, it helps a lot when you make incremental changes and need to make sure that all previous functionality are indeed intact. In GO also you can write code for code coverage and calculate the same.
@@ -19,7 +20,7 @@ Code Coverage helps you to validate your code, it helps a lot when you make incr
 | `go test -cover .`                      | Gets basic coverage statistics for a single package                   |
 | `go test ./... -coverprofile cover.out` | Creates Cover Profile for overall code coverage for multiple packages |
 | `go tool cover -func cover.out`         | Gives you code coverage for every single package within your project  |
-| `go test -coverprofile=cover`           | Gives you a coverage profile, then use below command to read it       |
+| `go test ./... -coverprofile=cover`     | Gives you a coverage profile, then use below command to read it       |
 | `go tool cover -html=cover`             | Gives you code coverage in HTML File                                  |
 
 ### `go test -cover .` Command
@@ -42,9 +43,15 @@ Code Coverage helps you to validate your code, it helps a lot when you make incr
 
 ### `go test -coverprofile=cover` Command
 
-`go test -coverprofile=cover` command will give you the code coverage for a single package. You can then use below command to read it.
+`go test -coverprofile=cover` command will give you the code coverage for a single package. You can then use bottom most command to read it.
 
 ![Sample Output](./img/go-test-coverprofile-single.png)
+
+### `go test ./... -coverprofile=cover` Command
+
+`go test ./... -coverprofile=cover` command will give you the code coverage for all the packages. You can then use below command to read it.
+
+![Sample Output](./img/go-test-coverprofile-all.png)
 
 ### `go tool cover -html=cover` Command
 
