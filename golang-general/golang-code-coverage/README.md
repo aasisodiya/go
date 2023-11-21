@@ -31,13 +31,13 @@ Code Coverage helps you to validate your code, it helps a lot when you make incr
 
 ### `go test ./... -coverprofile cover.out` Command
 
-`go test ./... -coverprofile cover.out` command will give you the overall code coverage for multiple packages. Run it from main package folder location.
+`go test ./... -coverprofile cover.out` command will give you the overall code coverage for multiple packages. Run it from main package folder location. Then you can run below command to view the code coverage percentage.
 
 ![Sample Output](./img/go-test-coverprofile.png)
 
 ### `go tool cover -func cover.out` Command
 
-`go tool cover -func cover.out` command will give you the code coverage for every single function/method in a package withing your project.
+`go tool cover -func cover.out` command will give you the code coverage for every single function/method in a package within your project. This command will only work if `cover.out` is  generated using above command.
 
 ![Sample Output](./img/go-tool-cover.png)
 
