@@ -1,0 +1,158 @@
+
+// https://bun.uptrace.dev/guide/complex-queries.html#params-validation
+
+
+
+From: Akash Sisodiya <akash_sisodiya@bio-rad.com> 
+Sent: Saturday, October 1, 2022 6:46 PM
+To: Devendra Singh <devendra_singh@bio-rad.com>
+Cc: Akash Sisodiya <akash_sisodiya@bio-rad.com>
+Subject: SQL Notes
+
+package repository
+
+import (
+    "context"
+    "fmt"
+    "time"
+
+    "biorad/qsd-unity-next/unitynext/apps/permissions-scripts/constants"
+    dbModel "biorad/qsd-unity-next/unitynext/apps/permissions-scripts/db"
+    "biorad/qsd-unity-next/unitynext/apps/permissions-scripts/utility"
+
+    "github.com/uptrace/bun"
+)
+
+func Test1(sq *bun.SelectQuery) *bun.SelectQuery {
+    return sq.Column("user_id").Column("account_id").Column("role").Group("user_id").Group("account_id").Group("role")
+}
+
+func (permissionRepository *PermissionsRepository) PopulateAccountData() (err error) {
+    ctx := context.Background()
+    db := utility.OpenBunConnection(permissionRepository.Db.DB)
+
+    var dbRes []dbModel.User
+    // var dbResPer []dbModel.Permission
+    if err = db.NewSelect().Model(&dbRes).
+        Relation("Permissions", Test1).
+        // ColumnExpr("account_id").
+        // GroupExpr("account_id").
+        // ColumnExpr("id").
+        // GroupExpr("id").
+        // ColumnExpr("role").
+        // GroupExpr("role").
+        // Group("permission.role").
+        Scan(ctx); err != nil {
+        return
+    }
+    fmt.Println("---------asasa----------")
+    fmt.Println(len(dbRes)) // 2572 // 2524 // 1524
+    fmt.Println(len(dbRes)) // 2524
+    fmt.Println(len(dbRes)) // 2524
+
+    // if true {
+    //  return errors.New("New")
+    // }
+    // fmt.Println(len(dbRes))
+    // return
+
+    var dbAccountRights []dbModel.AccountRights
+    for _, user := range dbRes {
+        for _, role := range user.Permissions {
+            dbAccountRights = append(dbAccountRights, dbModel.AccountRights{UserId: user.Id, AccountId: role.AccountId,
+                Role: role.Role, CreateTime: time.Now(), ModifiedTime: time.Now(), ModifiedBy: constants.PermissionScript})
+        }
+    }
+    _, err = db.NewInsert().Model(&dbAccountRights).Exec(ctx)
+    return
+}
+
+// var items []map[string]interface{}
+// err := db.NewSelect().
+//  With("regional_sales", regionalSales).
+//  With("top_regions", topRegions).
+//  ColumnExpr("region").
+//  ColumnExpr("product").
+//  ColumnExpr("SUM(quantity) AS product_units").
+//  ColumnExpr("SUM(amount) AS product_sales").
+//  TableExpr("orders").
+//  Where("region IN (SELECT region FROM top_regions)").
+//  GroupExpr("region").
+//  GroupExpr("product").
+//  Scan(ctx, &items)
+
+// https://bun.uptrace.dev/guide/complex-queries.html#params-validation
+
+package repository
+
+import (
+               "context"
+               "fmt"
+               "time"
+
+               "biorad/qsd-unity-next/unitynext/apps/permissions-scripts/constants"
+               dbModel "biorad/qsd-unity-next/unitynext/apps/permissions-scripts/db"
+               "biorad/qsd-unity-next/unitynext/apps/permissions-scripts/utility"
+
+               "github.com/uptrace/bun"
+)
+
+func Test1(sq *bun.SelectQuery) *bun.SelectQuery {
+               return sq.Column("user_id").Column("account_id").Column("role").Group("user_id").Group("account_id").Group("role")
+}
+
+func (permissionRepository *PermissionsRepository) PopulateAccountData() (err error) {
+               ctx := context.Background()
+               db := utility.OpenBunConnection(permissionRepository.Db.DB)
+
+               var dbRes []dbModel.User
+               // var dbResPer []dbModel.Permission
+               if err = db.NewSelect().Model(&dbRes).
+                              Relation("Permissions", Test1).
+                              // ColumnExpr("account_id").
+                              // GroupExpr("account_id").
+                              // ColumnExpr("id").
+                              // GroupExpr("id").
+                              // ColumnExpr("role").
+                              // GroupExpr("role").
+                              // Group("permission.role").
+                              Scan(ctx); err != nil {
+                              return
+               }
+               fmt.Println("---------asasa----------")
+               fmt.Println(len(dbRes)) // 2572 // 2524 // 1524
+               fmt.Println(len(dbRes)) // 2524
+               fmt.Println(len(dbRes)) // 2524
+
+               // if true {
+               //            return errors.New("New")
+               // }
+               // fmt.Println(len(dbRes))
+               // return
+
+               var dbAccountRights []dbModel.AccountRights
+               for _, user := range dbRes {
+                              for _, role := range user.Permissions {
+                                             dbAccountRights = append(dbAccountRights, dbModel.AccountRights{UserId: user.Id, AccountId: role.AccountId,
+                                                            Role: role.Role, CreateTime: time.Now(), ModifiedTime: time.Now(), ModifiedBy: constants.PermissionScript})
+                              }
+               }
+               _, err = db.NewInsert().Model(&dbAccountRights).Exec(ctx)
+               return
+}
+
+// var items []map[string]interface{}
+// err := db.NewSelect().
+//            With("regional_sales", regionalSales).
+//            With("top_regions", topRegions).
+//            ColumnExpr("region").
+//            ColumnExpr("product").
+//            ColumnExpr("SUM(quantity) AS product_units").
+//            ColumnExpr("SUM(amount) AS product_sales").
+//            TableExpr("orders").
+//            Where("region IN (SELECT region FROM top_regions)").
+//            GroupExpr("region").
+//            GroupExpr("product").
+//            Scan(ctx, &items)
+
+// https://bun.uptrace.dev/guide/complex-queries.html#params-validation

@@ -109,6 +109,7 @@ export GOROOT=/usr/local/go
 | `go vet`                   | Will examines Go source code and reports suspicious constructs                           |
 | `go mod init package-name` | Initializes and writes a new `go.mod` file                                               |
 | `go mod tidy`              | Ensures that the go.mod file matches the source code in the module                       |
+| `go mod vendor`            | Creates a local vendor directory containing project dependencies                         |
 
 `* here multiple go files refer to multiple package main files in same folder, ex main.go, handler.go are in same folder and have same package main`
 

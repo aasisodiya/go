@@ -1,1 +1,1 @@
-package github.com/aasisodiya/aws
+module github.com/aasisodiya/aws
