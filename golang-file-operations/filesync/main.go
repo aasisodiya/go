@@ -286,34 +286,35 @@ func ensureDirAndCopy(src, dst string) error {
 	if err != nil {
 		return err
 	}
+
+	// Defer a function to handle cleanup.
+	// It will run when ensureDirAndCopy returns.
+	defer func() {
+		// Always try to close the file.
+		if closeErr := out.Close(); err == nil && closeErr != nil {
+			// If we haven't had an error yet, the close error is the one to return.
+			err = closeErr
+		}
+		// If there was any error, remove the temporary file.
+		if err != nil {
+			os.Remove(tmpDst)
+		}
+	}()
+
 	if _, err := io.Copy(out, in); err != nil {
-		out.Close()
-		_ = os.Remove(tmpDst)
-		return err
+		return fmt.Errorf("failed to copy data: %w", err)
 	}
-	if err := out.Sync(); err != nil {
-		out.Close()
-		_ = os.Remove(tmpDst)
-		return err
-	}
-	if err := out.Close(); err != nil {
-		_ = os.Remove(tmpDst)
-		return err
-	}
-	// set permissions to match source
+
 	if err := os.Chmod(tmpDst, info.Mode()); err != nil {
-		_ = os.Remove(tmpDst)
-		return err
+		return fmt.Errorf("failed to set permissions: %w", err)
 	}
-	// set modtime
+
 	if err := os.Chtimes(tmpDst, time.Now(), info.ModTime()); err != nil {
-		_ = os.Remove(tmpDst)
-		return err
+		return fmt.Errorf("failed to set modification time: %w", err)
 	}
-	// atomic rename
+
 	if err := os.Rename(tmpDst, dst); err != nil {
-		_ = os.Remove(tmpDst)
-		return err
+		return fmt.Errorf("failed to rename temporary file: %w", err)
 	}
 	return nil
 }
