@@ -167,7 +167,7 @@ func executePlan(planPath string) error {
 	defer f.Close()
 
 	sc := bufio.NewScanner(f)
-	var lastErr error
+	var errs []error
 	for sc.Scan() {
 		line := strings.TrimSpace(sc.Text())
 		if line == "" || strings.HasPrefix(line, "#") {
@@ -179,7 +179,7 @@ func executePlan(planPath string) error {
 			parts := strings.SplitN(line[len("COPY "):], "->", 2)
 			if len(parts) != 2 {
 				fmt.Fprintf(os.Stderr, "invalid COPY line: %s\n", line)
-				lastErr = fmt.Errorf("invalid COPY line")
+				errs = append(errs, fmt.Errorf("invalid COPY line: %q", line))
 				continue
 			}
 			src := strings.TrimSpace(parts[0])
@@ -187,7 +187,7 @@ func executePlan(planPath string) error {
 			fmt.Printf("Copying: %s -> %s\n", src, dst)
 			if err := ensureDirAndCopy(src, dst); err != nil {
 				fmt.Fprintf(os.Stderr, "copy error: %v\n", err)
-				lastErr = err
+				errs = append(errs, err)
 			}
 		case strings.HasPrefix(line, "DELETE "):
 			// format: DELETE <dst>
@@ -196,7 +196,7 @@ func executePlan(planPath string) error {
 			deletedDir := filepath.Join(filepath.Dir(dst), "deleted")
 			if err := os.MkdirAll(deletedDir, 0o755); err != nil {
 				fmt.Fprintf(os.Stderr, "create deleted dir error: %v\n", err)
-				lastErr = err
+				errs = append(errs, err)
 				continue
 			}
 			// Move file to deleted folder
@@ -207,17 +207,26 @@ func executePlan(planPath string) error {
 					continue
 				}
 				fmt.Fprintf(os.Stderr, "move to deleted folder error: %v\n", err)
-				lastErr = err
+				errs = append(errs, err)
 			}
 		default:
 			fmt.Fprintf(os.Stderr, "unknown plan line: %s\n", line)
-			lastErr = fmt.Errorf("unknown plan line")
+			errs = append(errs, fmt.Errorf("unknown plan line: %q", line))
 		}
 	}
 	if err := sc.Err(); err != nil {
-		return err
+		errs = append(errs, err)
 	}
-	return lastErr
+
+	if len(errs) > 0 {
+		var errStrings []string
+		for _, err := range errs {
+			errStrings = append(errStrings, err.Error())
+		}
+		return fmt.Errorf("encountered %d errors during plan execution:\n- %s", len(errs), strings.Join(errStrings, "\n- "))
+	}
+
+	return nil
 }
 
 // EnsureDirAndCopy ensures that the destination directory exists and
