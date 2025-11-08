@@ -82,7 +82,9 @@ func main() {
 	if len(plan) == 0 {
 		fmt.Println("No actions required. Nothing to sync.")
 		// ensure empty plan file exists
-		_ = os.WriteFile(*planPath, []byte{}, 0644)
+		if err := os.WriteFile(*planPath, []byte{}, 0644); err != nil {
+			fmt.Fprintf(os.Stderr, "warning: failed to write empty plan file: %v\n", err)
+		}
 		return
 	}
 
@@ -108,53 +110,15 @@ func main() {
 // builds a map of relative paths to file info. Finally, it compares the
 // two maps and generates plan lines accordingly.
 func createPlan(srcRoot, dstRoot string) ([]string, error) {
-	srcMap := map[string]fs.FileInfo{}
-	dstMap := map[string]fs.FileInfo{}
-
 	// Walk source and build map of relative paths to file info
-	if err := filepath.WalkDir(srcRoot, func(p string, d fs.DirEntry, err error) error {
-		if err != nil {
-			return err
-		}
-		if d.IsDir() {
-			return nil
-		}
-		info, err := d.Info()
-		if err != nil {
-			return err
-		}
-		rel, err := filepath.Rel(srcRoot, p)
-		if err != nil {
-			return err
-		}
-		// Use slash-separated relative path for comparison on all OSes
-		rel = filepath.ToSlash(rel)
-		srcMap[rel] = info
-		return nil
-	}); err != nil {
+	srcMap, err := walkDirToMap(srcRoot)
+	if err != nil {
 		return nil, err
 	}
 
 	// Walk target and build map of relative paths to file info
-	if err := filepath.WalkDir(dstRoot, func(p string, d fs.DirEntry, err error) error {
-		if err != nil {
-			return err
-		}
-		if d.IsDir() {
-			return nil
-		}
-		info, err := d.Info()
-		if err != nil {
-			return err
-		}
-		rel, err := filepath.Rel(dstRoot, p)
-		if err != nil {
-			return err
-		}
-		rel = filepath.ToSlash(rel)
-		dstMap[rel] = info
-		return nil
-	}); err != nil {
+	dstMap, err := walkDirToMap(dstRoot)
+	if err != nil {
 		return nil, err
 	}
 
@@ -325,4 +289,31 @@ func ensureDirAndCopy(src, dst string) error {
 func fatal(err error) {
 	fmt.Fprintln(os.Stderr, "error:", err)
 	os.Exit(1)
+}
+
+// walkDirToMap walks the directory tree rooted at root and returns a map of
+// relative path strings to fs.FileInfo objects. It does not follow
+// symbolic links. If there is an error walking the directory tree,
+// an error is returned, and the map is empty.
+func walkDirToMap(root string) (map[string]fs.FileInfo, error) {
+	fileMap := map[string]fs.FileInfo{}
+	err := filepath.WalkDir(root, func(p string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if d.IsDir() {
+			return nil
+		}
+		info, err := d.Info()
+		if err != nil {
+			return err
+		}
+		rel, err := filepath.Rel(root, p)
+		if err != nil {
+			return err
+		}
+		fileMap[filepath.ToSlash(rel)] = info
+		return nil
+	})
+	return fileMap, err
 }
