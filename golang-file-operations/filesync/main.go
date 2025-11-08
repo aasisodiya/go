@@ -39,8 +39,8 @@ import (
 // If the -apply flag is not provided, the command will generate a plan
 // and write it to the plan file. If the plan file already exists, it
 // will be overwritten. If the plan is empty (i.e. there are no operations
-// required to bring the target directory up to date), the plan file will
-// be deleted.
+// required to bring the target directory up to date), an empty plan file will
+// be written.
 //
 // The command will print the planned operations to stdout, and will also
 // write them to the plan file. If the plan is empty, it will print a
