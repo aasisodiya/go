@@ -158,7 +158,7 @@ func createPlan(srcRoot, dstRoot string) ([]string, error) {
 // DELETE <dst>
 //
 // The function will return an error if any of the operations in the plan fail.
-// If an error occurs, the function will continue to process the plan and return the last error encountered.
+// If an error occurs, the function will continue to process the plan and return an aggregated error containing all issues encountered.
 func executePlan(planPath string) error {
 	f, err := os.Open(planPath)
 	if err != nil {
