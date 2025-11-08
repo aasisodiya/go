@@ -183,12 +183,21 @@ func executePlan(planPath string) error {
 		case strings.HasPrefix(line, "DELETE "):
 			// format: DELETE <dst>
 			dst := strings.TrimSpace(line[len("DELETE "):])
-			fmt.Printf("Deleting: %s\n", dst)
-			if err := os.Remove(dst); err != nil {
+			// Create deleted folder in the same parent directory
+			deletedDir := filepath.Join(filepath.Dir(dst), "deleted")
+			if err := os.MkdirAll(deletedDir, 0o755); err != nil {
+				fmt.Fprintf(os.Stderr, "create deleted dir error: %v\n", err)
+				lastErr = err
+				continue
+			}
+			// Move file to deleted folder
+			newPath := filepath.Join(deletedDir, filepath.Base(dst))
+			fmt.Printf("Moving to deleted folder: %s -> %s\n", dst, newPath)
+			if err := os.Rename(dst, newPath); err != nil {
 				if os.IsNotExist(err) {
 					continue
 				}
-				fmt.Fprintf(os.Stderr, "delete error: %v\n", err)
+				fmt.Fprintf(os.Stderr, "move to deleted folder error: %v\n", err)
 				lastErr = err
 			}
 		default:
