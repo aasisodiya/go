@@ -219,11 +219,12 @@ func executePlan(planPath string) error {
 	}
 
 	if len(errs) > 0 {
-		var errStrings []string
+		var sb strings.Builder
+		fmt.Fprintf(&sb, "encountered %d errors during plan execution:", len(errs))
 		for _, err := range errs {
-			errStrings = append(errStrings, err.Error())
+			fmt.Fprintf(&sb, "\n- %s", err.Error())
 		}
-		return fmt.Errorf("encountered %d errors during plan execution:\n- %s", len(errs), strings.Join(errStrings, "\n- "))
+		return fmt.Errorf("%s", sb.String())
 	}
 
 	return nil
