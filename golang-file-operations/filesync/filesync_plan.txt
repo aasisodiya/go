@@ -1,0 +1,4 @@
+COPY C:\Users\akash\Documents\github\go\golang-file-operations\filesync\test\source\folder1\BATMAN.png -> C:\Users\akash\Documents\github\go\golang-file-operations\filesync\test\target\folder1\BATMAN.png
+COPY C:\Users\akash\Documents\github\go\golang-file-operations\filesync\test\source\folder2\CYBORG.png -> C:\Users\akash\Documents\github\go\golang-file-operations\filesync\test\target\folder2\CYBORG.png
+DELETE C:\Users\akash\Documents\github\go\golang-file-operations\filesync\test\target\folder1\CYCLOPS.png
+DELETE C:\Users\akash\Documents\github\go\golang-file-operations\filesync\test\target\folder2\DEADPOOL.png
