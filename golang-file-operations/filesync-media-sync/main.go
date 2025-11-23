@@ -38,7 +38,11 @@ func main() {
 	collectMonthAndNotGoogleFiles(externalDir, externalFiles)
 
 	// Write missing in external drive to file
-	f1, _ := os.Create("missing_in_external_drive.txt")
+	f1, err := os.Create("missing_in_external_drive.txt")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error creating missing_in_external_drive.txt: %v\n", err)
+		return
+	}
 	defer f1.Close()
 	for name, relpaths := range backupFiles {
 		if _, ok := externalFiles[name]; !ok {
@@ -49,7 +53,11 @@ func main() {
 	}
 
 	// Write missing in backup to file
-	f2, _ := os.Create("missing_in_backup.txt")
+	f2, err := os.Create("missing_in_backup.txt")
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error creating missing_in_backup.txt: %v\n", err)
+		return
+	}
 	defer f2.Close()
 	for name, relpaths := range externalFiles {
 		if _, ok := backupFiles[name]; !ok {
@@ -63,7 +71,11 @@ func main() {
 // Collect files from all yyyymm and yyyymm/not_google folders, all formats, no skipping
 func collectMonthAndNotGoogleFiles(root string, files map[string][]string) {
 	filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
-		if err != nil || !info.IsDir() {
+		if err != nil {
+			fmt.Println(err)
+			return nil
+		}
+		if !info.IsDir() {
 			return nil
 		}
 		// Check if this is a yyyymm folder (6 digits)
@@ -71,6 +83,7 @@ func collectMonthAndNotGoogleFiles(root string, files map[string][]string) {
 			// Collect files in yyyymm
 			filepath.Walk(path, func(fpath string, finfo os.FileInfo, ferr error) error {
 				if ferr != nil {
+					fmt.Println(ferr)
 					return nil
 				}
 				// Only collect files directly under yyyymm (not in subfolders)
@@ -86,11 +99,15 @@ func collectMonthAndNotGoogleFiles(root string, files map[string][]string) {
 			if stat, err := os.Stat(notGooglePath); err == nil && stat.IsDir() {
 				filepath.Walk(notGooglePath, func(fpath string, finfo os.FileInfo, ferr error) error {
 					if ferr != nil {
+						fmt.Println(ferr)
 						return nil
 					}
 					if finfo != nil && !finfo.IsDir() {
 						key := strings.ToLower(finfo.Name())
-						rel, _ := filepath.Rel(root, fpath)
+						rel, err := filepath.Rel(root, fpath)
+						if err != nil {
+							fmt.Println(err)
+						}
 						files[key] = append(files[key], rel)
 					}
 					return nil
