@@ -54,9 +54,10 @@ func main() {
 // Collect files from all yyyymm and yyyymm/not_google folders, all formats, no skipping
 func collectMonthAndNotGoogleFiles(root string, files map[string][]string) {
 	filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			fmt.Println(err)
-			return nil
+if err != nil {
+		fmt.Fprintf(os.Stderr, "error walking path %q: %v\n", path, err)
+		return nil
+	}
 		}
 		if !info.IsDir() {
 			return nil
@@ -65,9 +66,10 @@ func collectMonthAndNotGoogleFiles(root string, files map[string][]string) {
 		if len(info.Name()) == 6 && isAllDigits(info.Name()) {
 			// Collect files in yyyymm
 			filepath.Walk(path, func(fpath string, finfo os.FileInfo, ferr error) error {
-				if ferr != nil {
-					fmt.Println(ferr)
-					return nil
+if ferr != nil {
+				fmt.Fprintf(os.Stderr, "error walking path %q: %v\n", fpath, ferr)
+				return nil
+			}
 				}
 				// Only collect files directly under yyyymm (not in subfolders)
 				if finfo != nil && !finfo.IsDir() && filepath.Dir(fpath) == path {
@@ -81,16 +83,18 @@ func collectMonthAndNotGoogleFiles(root string, files map[string][]string) {
 			notGooglePath := filepath.Join(path, "not_google")
 			if stat, err := os.Stat(notGooglePath); err == nil && stat.IsDir() {
 				filepath.Walk(notGooglePath, func(fpath string, finfo os.FileInfo, ferr error) error {
-					if ferr != nil {
-						fmt.Println(ferr)
-						return nil
+if ferr != nil {
+					fmt.Fprintf(os.Stderr, "error walking path %q: %v\n", fpath, ferr)
+					return nil
+				}
 					}
 					if finfo != nil && !finfo.IsDir() {
 						key := strings.ToLower(finfo.Name())
 						rel, err := filepath.Rel(root, fpath)
-						if err != nil {
-							fmt.Println(err)
-						}
+if err != nil {
+					fmt.Fprintf(os.Stderr, "error getting relative path for %q from root %q: %v\n", fpath, root, err)
+					return nil
+				}
 						files[key] = append(files[key], rel)
 					}
 					return nil
