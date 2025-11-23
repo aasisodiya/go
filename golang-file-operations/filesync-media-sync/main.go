@@ -134,7 +134,7 @@ func isAllDigits(s string) bool {
 // 	case ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".mp4", ".mov", ".avi", ".mkv", ".heic", ".tiff", ".webp":
 // 		return true
 // 	default:
-// 		fmt.Println("Skipping file with extension:", ext, "Filename:", name)
+// 		fmt.Println("Skipping file with extension:", ext, "File-name:", name)
 // 		return false
 // 	}
 // }
