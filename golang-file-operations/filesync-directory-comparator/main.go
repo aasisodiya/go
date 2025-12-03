@@ -1,6 +1,3 @@
-// Compare file one by one in two directories and also their subdirectories
-// Print the differences
-
 package main
 
 import (
