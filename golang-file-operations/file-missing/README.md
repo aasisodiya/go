@@ -24,8 +24,8 @@ The comparison is done based on file basenames (filename without extension), mak
 Update the hardcoded directory paths in `main.go`:
 
 ```go
-const dirA = "source" // Change as needed
-const dirB = "target"                    // Change as needed
+const dirA = "./test/source" // Change as needed
+const dirB = "./test/target"                    // Change as needed
 ```
 
 ### Running the Program

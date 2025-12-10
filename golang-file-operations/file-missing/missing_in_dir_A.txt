@@ -1,5 +1,2 @@
-Files present in 'C:/Users/akash/Downloads/qwe' but missing in the other directory (comparison by name only):
-img_1312(1)
-img_1311
-img_1473(1)
-img_0995
+Files present in './test/target' but missing in the other directory (comparison by name only):
+cyborg
